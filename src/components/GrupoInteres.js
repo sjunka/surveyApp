@@ -1,12 +1,12 @@
 //Importar componentes React
 import React from 'react';
 
-class Cobertura extends React.Component {
+class GrupoInteres extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             nombre : '',
-            tipo : 'interna',
+            descripcion : ''
         }
     
     }
@@ -24,22 +24,20 @@ class Cobertura extends React.Component {
                             value={this.state.nombre}
                             onChange={this.handleNombre}
                             type="text" 
-                            placeholder="Nombre Cobertura"/>
+                            placeholder="Nombre Grupo Interes"/>
                         </div>
                 </div>
 
-                
                 <div className="field">
-                    <label className="label">Tipo de cobertura:</label>
-                    <div className="control">
-                        <div className="select">
-                        <select value={this.state.tipo} onChange={this.handleTipo}>
-                            <option value="interna">Interna</option>
-                            <option value="externa">Externa</option>
-                        </select>
+                        <label className="label">Descripcion:</label>
+                        <div className="control">
+                            <textarea 
+                            className="textarea" 
+                            value = {this.state.descripcion}
+                            onChange = {this.handleDescripcion}
+                            placeholder="Breve descripcion del grupo de interes"></textarea>
                         </div>
                     </div>
-                </div>
 
                 <input type="submit"
                     className="button is-link"
@@ -61,13 +59,13 @@ class Cobertura extends React.Component {
         })
     }
 
-    handleTipo = (e) => {
+    handleDescripcion = (e) => {
         this.setState ({
-            tipo: e.target.value
+            descripcion: e.target.value
         })
     }
 
 }
 
 
-export default Cobertura;
+export default GrupoInteres;

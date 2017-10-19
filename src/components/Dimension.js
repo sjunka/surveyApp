@@ -14,7 +14,7 @@ class Dimension extends React.Component {
     
     render (){
         return(
-        <div>
+        <div className="container">
             <form onSubmit={this.handleSubmit}>
                     
                 <div className="field">
@@ -40,7 +40,7 @@ class Dimension extends React.Component {
                     </div>
 
                 <input type="submit"
-                    className="button"
+                    className="button is-link"
                     value="Guardar"/>
 
             </form>
