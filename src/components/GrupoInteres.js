@@ -15,35 +15,55 @@ class GrupoInteres extends React.Component {
     render (){
         return(
         <div className="container">
+            <div className="col-sm12">
+
+            <h4 className="col-form-label">Grupo de Interes</h4>
+
             <form onSubmit={this.handleSubmit}>
                     
-                <div className="field">
-                    <label className="label">Nombre:</label>
-                        <div className="control">
-                            <input className="input"
+                <div className="form-group">
+                    <label className="col-form-label">Nombre:</label>
+                            <input className="form-control"
                             value={this.state.nombre}
                             onChange={this.handleNombre}
                             type="text" 
-                            placeholder="Nombre Grupo Interes"/>
-                        </div>
+                            />
+                            <small id="namehelp" className="form-text text-muted">Nombre del grupo de interes</small>
                 </div>
 
-                <div className="field">
-                        <label className="label">Descripcion:</label>
-                        <div className="control">
-                            <textarea 
-                            className="textarea" 
-                            value = {this.state.descripcion}
-                            onChange = {this.handleDescripcion}
-                            placeholder="Breve descripcion del grupo de interes"></textarea>
-                        </div>
+                <div className="form-group">
+                    <label>Descripcion:</label>
+                    <br/>
+                    <div className="">
+                        <textarea 
+                        className="form-control"
+                        rows = "6"
+                        cols = "34" 
+                        value = {this.state.descripcion}
+                        onChange = {this.handleDescripcion}
+                        placeholder="">
+                        </textarea>
+                        <small id="namehelp" className="form-text text-muted">Descripción del grupo de interes</small>
                     </div>
+                </div>
 
-                <input type="submit"
-                    className="button is-link"
-                    value="Guardar"/>
+
+
+
+                <div className="d-flex justify-content-center">
+                    <div className="col-sm-6 text-right">
+                        <button type="submit" className="btn btn-success">Guardar</button>
+
+                    </div>
+                    <div className="col-sm-6 text-left">
+                        <button type="button" className="btn btn-danger">Cancelar</button>
+
+                    </div>
+                </div>
+           
 
             </form>
+            </div>
         </div>
         )
     }

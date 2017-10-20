@@ -11,6 +11,8 @@ import  Cobertura  from './components/Cobertura'
 import  TemaRelevante  from './components/TemaRelevante'
 //Importar componente GrupoInteres
 import  GrupoInteres  from './components/GrupoInteres'
+//Importar componente Pregunta
+import  Pregunta  from './components/Pregunta'
 
 
 //Importar Estilos 
@@ -19,25 +21,52 @@ import './App.css';
 class App extends Component {
   render (){
     return (
-    <Router>
-      <div style={{color:'teal'}}> 
-        Panel de rutas de la aplicación
-        <div>
-          <Link to="/grupointeres">Grupo Interes</Link>
-          <br/>
-          <Link to="/dimension">Dimension</Link>
-          <br/>
-          <Link to="/cobertura">Cobertura</Link>
-          <br/>
-          <Link to="/temarelevante">TemaRelevante</Link>
-          <br/>
+           
+      <Router>
+        <div> 
+      <nav className="navbar navbar-dark bg-primary">
+          <a className="navbar-brand" href="#">Sigma Encuestas</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+
+            <li className="nav-item">
+            
+            <Link className="nav-link" to="/grupointeres">Grupo Interes</Link>
+            </li>
+
+            <li className="nav-item">
+            
+            <Link className="nav-link" to="/dimension">Dimension</Link>
+            
+            </li>
+
+            <li className="nav-item">
+            <Link className="nav-link" to="/cobertura">Cobertura</Link>
+            </li>
+
+            <li className="nav-item">
+            <Link className="nav-link" to="/temarelevante">TemaRelevante</Link>
+            </li>
+
+            <li className="nav-item">
+            <Link className="nav-link" to="/pregunta">Pregunta</Link>
+            
+            </li>
+          </ul>
         </div>
-        <Route path="/grupointeres" component= {GrupoInteres} />
-        <Route exact path="/dimension" component= {Dimension} />
-        <Route path="/cobertura" component= {Cobertura} />
-        <Route path="/temarelevante" component= {TemaRelevante} />
-      </div>
-    </Router>
+      </nav>
+          
+          <Route path="/grupointeres" component= {GrupoInteres} />
+          <Route exact path="/dimension" component= {Dimension} />
+          <Route path="/cobertura" component= {Cobertura} />
+          <Route path="/temarelevante" component= {TemaRelevante} />
+          <Route path="/pregunta" component= {Pregunta} />
+        </div>
+      </Router>
     );
   }
 }
