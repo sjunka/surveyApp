@@ -18,99 +18,98 @@ class Pregunta extends React.Component {
     render (){
         return(
         <div className="container">
+            <h4 className="col-form-label">Pregunta</h4>
             <form onSubmit={this.handleSubmit}>
-                    
-            <div className="field">
-            <label className="label">Dimension:</label>
-                <div className="control">
-                    <div className="select">
-                    <select value={this.state.tipo} onChange={this.handleTipo}>
-                        <option value="ambiental">Ambiental</option>
-                        <option value="social">Social</option>
-                        <option value="economica">Economica</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
 
-            <div className="field">
-            <label className="label">Tema Relevante:</label>
-                <div className="control">
-                    <div className="select">
-                    <select value={this.state.tipo} onChange={this.handleTipo}>
-                        <option value="tema1">Derechos Humanos</option>
-                        <option value="tema2">Productos limpios </option>
-                        <option value="tema3">Biodiversidad</option>
-                        <option value="tema4">Innovación y tecnología</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-                
-            <div className="field">
-            <label className="label">Tipo Pregunta:</label>
-                <div className="control">
-                    <div className="select">
-                    <select value={this.state.tipo} onChange={this.handleTipo}>
-                        <option value="abierta">Abierta</option>
-                        <option value="cerrada">Cerrada</option>
-                    </select>
-                    </div>
-                </div>
-            </div>        
 
-            <div className="field">
-                <label className="label">Descripcion:</label>
-                <div className="control">
+            <div className="form-group">
+                <label>Descripcion:</label>
+                <div className="">
                     <textarea 
-                    className="textarea" 
+                    className="form-control"
                     value = {this.state.descripcion}
                     onChange = {this.handleDescripcion}
-                    placeholder="Escribir pregunta"></textarea>
+                    placeholder="">
+                    </textarea>
+                    <small id="namehelp" className="form-text text-muted">Descripción de pregunta</small>
                 </div>
+            </div>
+                    
+            <div className="form-group">
+                <label className="col-form-label">Dimension:</label>
+                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                    <option value="ambiental">Ambiental</option>
+                    <option value="social">Social</option>
+                    <option value="economica">Economica</option>
+                </select>
+                <small id="namehelp" className="form-text text-muted">Dimensión</small>
+            </div>
+
+            <div className="form-group">
+                <label className="col-form-label">Tema Relevante::</label>
+                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                    <option value="tema1">Derechos Humanos</option>
+                    <option value="tema2">Productos limpios </option>
+                    <option value="tema3">Biodiversidad</option>
+                    <option value="tema4">Innovación y tecnología</option>
+                </select>
+                <small id="namehelp" className="form-text text-muted">Tema Relevante</small>
             </div>
             
-            <div className="field">
-                <label className="label">Grupo de Interes:</label>
-                <div className="control">
-                    <label className="checkbox">
-                    <input type="checkbox"/>
-                    Accionista e inversionitas 
-                    </label>
 
-                    <br/>
-                    <label className="checkbox">
-                    <input type="checkbox"/>
-                    Clientes
-                    </label>
 
-                    <br/>
-                    <label className="checkbox">
-                    <input type="checkbox"/>
-                    Contratatistas y sus empleados
-                    </label>
-                    <br/>
-
-                    <label className="checkbox">
-                    <input type="checkbox"/>
-                    Socios
-                    </label>
-                    
-                    <br/>
-                    <label className="checkbox">
-                    <input type="checkbox"/>
-                    Sociedad y comunidad
-                    </label>
-                    <br/>
-
-                </div>
+            <div className="form-group">
+                <label className="col-form-label">Tipo Pregunta:</label>
+                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                    <option value="abierta">Abierta</option>
+                    <option value="cerrada">Cerrada</option>
+                </select>
+                <small id="namehelp" className="form-text text-muted">Tipo</small>
             </div>
 
+            <div className="custom-controls-stacked">
+                <label className="col-form-label">Grupo de Interes:</label>
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input"/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Accionista e inversionitas</span>
+                    </label>
 
-                <input type="submit"
-                    className="button is-link"
-                    value="Guardar"/>
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input"/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Clientes</span>
+                    </label>
 
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input"/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Contratatistas y sus empleados</span>
+                    </label>
+
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input"/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Socios</span>
+                    </label>
+
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input"/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Sociedad y comunidad</span>
+                    </label>
+            </div>
+
+            <div className="d-flex justify-content-center">
+            <div className="col-sm-6 text-right">
+                <button type="submit" className="btn btn-success">Guardar</button>
+
+            </div>
+            <div className="col-sm-6 text-left">
+                <button type="button" className="btn btn-danger">Cancelar</button>
+
+            </div>
+        </div>
             </form>
         </div>
         )

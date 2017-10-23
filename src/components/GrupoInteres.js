@@ -37,8 +37,7 @@ class GrupoInteres extends React.Component {
                     <div className="">
                         <textarea 
                         className="form-control"
-                        rows = "6"
-                        cols = "34" 
+                        
                         value = {this.state.descripcion}
                         onChange = {this.handleDescripcion}
                         placeholder="">
