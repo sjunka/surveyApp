@@ -5,10 +5,10 @@ class Pregunta extends React.Component {
     constructor(props){
         super(props)
         this.state = {
+            descripcion : '',
             dimension:'',
             temarelevante: '',
             tipo : '',
-            descripcion : '',
             grupointeres:''
         }
     
@@ -37,7 +37,8 @@ class Pregunta extends React.Component {
                     
             <div className="form-group">
                 <label className="col-form-label">Dimension:</label>
-                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                <select className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                    <option value="null">Escoger dimension:</option>
                     <option value="ambiental">Ambiental</option>
                     <option value="social">Social</option>
                     <option value="economica">Economica</option>
@@ -47,7 +48,8 @@ class Pregunta extends React.Component {
 
             <div className="form-group">
                 <label className="col-form-label">Tema Relevante::</label>
-                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                <select className="form-control custom-select" value={this.state.temarelevante} onChange={this.handleTemaRelevante}>
+                    <option value="null">Escoger Tema Relevante</option>
                     <option value="tema1">Derechos Humanos</option>
                     <option value="tema2">Productos limpios </option>
                     <option value="tema3">Biodiversidad</option>
@@ -60,7 +62,7 @@ class Pregunta extends React.Component {
 
             <div className="form-group">
                 <label className="col-form-label">Tipo Pregunta:</label>
-                <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                <select  className="form-control custom-select" value={this.state.tipo} onChange={this.handleTipo}>
                     <option value="abierta">Abierta</option>
                     <option value="cerrada">Cerrada</option>
                 </select>
@@ -120,9 +122,22 @@ class Pregunta extends React.Component {
         e.preventDefault();
     }
 
-    handleNombre = (e) => {
+    handleDescripcion = (e) => {
         this.setState ({
-            nombre: e.target.value
+            descripcion: e.target.value
+        })
+    }
+
+    handleDimension = (e) =>{
+        this.setState({
+            dimension: e.target.value
+        })
+    }
+
+    handleTemaRelevante = (e) =>{
+        this.setState({
+            temarelevante: e.target.value
+
         })
     }
 

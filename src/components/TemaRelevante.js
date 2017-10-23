@@ -6,7 +6,7 @@ class TemaRelevante extends React.Component {
         super(props)
         this.state = {
             nombre : '',
-            dimension : 'ambiental',
+            dimension : '',
             cobertura: ''
         }
     
@@ -33,6 +33,7 @@ class TemaRelevante extends React.Component {
                 <div className="form-group">
                     <label className="col-form-label">Dimension:</label>
                     <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                        <option value="null">Escoger dimension:</option>
                         <option value="ambiental">Ambiental</option>
                         <option value="social">Social</option>
                         <option value="economica">Economica</option>
