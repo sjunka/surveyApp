@@ -71,6 +71,13 @@ class Pregunta extends React.Component {
 
             <div className="custom-controls-stacked">
                 <label className="col-form-label">Grupo de Interes:</label>
+
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" defaultChecked/>
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">Todos los grupos de interes</span>
+                    </label>
+
                     <label className="custom-control custom-checkbox">
                         <input type="checkbox" className="custom-control-input"/>
                         <span className="custom-control-indicator"></span>

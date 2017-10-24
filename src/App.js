@@ -33,32 +33,25 @@ class App extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
 
-            <li className="nav-item">
-            
-            <Link className="nav-link" to="/grupointeres">Grupo Interes</Link>
-            </li>
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              Crear Pregunta
+            </a>
+            <div className="dropdown-menu">
+              
+              <Link className="dropdown-item" to="/grupointeres">Grupo Interes</Link>  
+              <Link className="dropdown-item" to="/dimension">Dimension</Link>  
+              <Link className="dropdown-item" to="/cobertura">Cobertura</Link>
+              <Link className="dropdown-item" to="/temarelevante">TemaRelevante</Link>
+              <div className="dropdown-divider"></div>
+              <Link className="dropdown-item" to="/pregunta">Pregunta</Link>
+            </div>
+          </li>
 
-            <li className="nav-item">
-            
-            <Link className="nav-link" to="/dimension">Dimension</Link>
-            
-            </li>
-
-            <li className="nav-item">
-            <Link className="nav-link" to="/cobertura">Cobertura</Link>
-            </li>
-
-            <li className="nav-item">
-            <Link className="nav-link" to="/temarelevante">TemaRelevante</Link>
-            </li>
-
-            <li className="nav-item">
-            <Link className="nav-link" to="/pregunta">Pregunta</Link>
-            
-            </li>
           </ul>
         </div>
       </nav>
+          
           
           <Route path="/grupointeres" component= {GrupoInteres} />
           <Route exact path="/dimension" component= {Dimension} />
