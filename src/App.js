@@ -13,6 +13,8 @@ import  TemaRelevante  from './components/TemaRelevante'
 import  GrupoInteres  from './components/GrupoInteres'
 //Importar componente Pregunta
 import  Pregunta  from './components/Pregunta'
+//Importar componente Registro Usuario
+import  RegistroUsuario  from './components/RegistroUsuario'
 
 
 //Importar Estilos 
@@ -34,11 +36,12 @@ class App extends Component {
           <ul className="navbar-nav">
 
           <li className="nav-item dropdown">
+            
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
               Crear Pregunta
             </a>
+
             <div className="dropdown-menu">
-              
               <Link className="dropdown-item" to="/grupointeres">Grupo Interes</Link>  
               <Link className="dropdown-item" to="/dimension">Dimension</Link>  
               <Link className="dropdown-item" to="/cobertura">Cobertura</Link>
@@ -46,7 +49,13 @@ class App extends Component {
               <div className="dropdown-divider"></div>
               <Link className="dropdown-item" to="/pregunta">Pregunta</Link>
             </div>
+
           </li>
+              
+              
+          <li className="nav-item">
+             <Link className="nav-link" to="/registrousuario">Registro Encuestado</Link>
+          </li>          
 
           </ul>
         </div>
@@ -58,6 +67,7 @@ class App extends Component {
           <Route path="/cobertura" component= {Cobertura} />
           <Route path="/temarelevante" component= {TemaRelevante} />
           <Route path="/pregunta" component= {Pregunta} />
+          <Route path="/registrousuario" component= {RegistroUsuario} />
         </div>
       </Router>
     );
