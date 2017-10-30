@@ -15,6 +15,8 @@ import  GrupoInteres  from './components/GrupoInteres'
 import  Pregunta  from './components/Pregunta'
 //Importar componente Registro Usuario
 import  RegistroUsuario  from './components/RegistroUsuario'
+//Importar componente Encuesta
+import  Encuesta  from './components/Encuesta'
 
 
 //Importar Estilos 
@@ -26,8 +28,8 @@ class App extends Component {
            
       <Router>
         <div> 
-      <nav className="navbar navbar-dark bg-primary">
-          <a className="navbar-brand" href="#">Sigma Encuestas</a>
+      <nav className="navbar navbar-dark bg-info">
+          <a className="navbar-brand" href="/">Ejercicio Materialidad</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -57,6 +59,10 @@ class App extends Component {
              <Link className="nav-link" to="/registrousuario">Registro Encuestado</Link>
           </li>          
 
+          <li className="nav-item">
+             <Link className="nav-link" to="/encuesta">Crear Encuesta</Link>
+          </li>
+
           </ul>
         </div>
       </nav>
@@ -68,6 +74,7 @@ class App extends Component {
           <Route path="/temarelevante" component= {TemaRelevante} />
           <Route path="/pregunta" component= {Pregunta} />
           <Route path="/registrousuario" component= {RegistroUsuario} />
+          <Route path="/encuesta" component= {Encuesta} />
         </div>
       </Router>
     );
