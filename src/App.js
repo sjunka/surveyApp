@@ -17,6 +17,8 @@ import  Pregunta  from './components/Pregunta'
 import  RegistroUsuario  from './components/RegistroUsuario'
 //Importar componente Encuesta
 import  Encuesta  from './components/Encuesta'
+//Importar componente ListarPreguntas
+import  ListarPreguntas  from './components/ListarPreguntas'
 
 
 //Importar Estilos 
@@ -63,6 +65,24 @@ class App extends Component {
              <Link className="nav-link" to="/encuesta">Crear Encuesta</Link>
           </li>
 
+
+          <li className="nav-item dropdown">
+            
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              Menu Listar
+            </a>
+
+            <div className="dropdown-menu">
+              <Link className="dropdown-item" to="/listarpreguntas">Preguntas</Link>  
+              <Link className="dropdown-item" to="/grupointeres">Tema Relevante</Link>  
+            </div>
+
+          </li>
+
+
+
+
+
           </ul>
         </div>
       </nav>
@@ -75,6 +95,7 @@ class App extends Component {
           <Route path="/pregunta" component= {Pregunta} />
           <Route path="/registrousuario" component= {RegistroUsuario} />
           <Route path="/encuesta" component= {Encuesta} />
+          <Route path="/listarpreguntas" component= {ListarPreguntas} />
         </div>
       </Router>
     );
