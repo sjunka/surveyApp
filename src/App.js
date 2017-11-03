@@ -19,6 +19,8 @@ import  RegistroUsuario  from './components/RegistroUsuario'
 import  Encuesta  from './components/Encuesta'
 //Importar componente ListarPreguntas
 import  ListarPreguntas  from './components/ListarPreguntas'
+//Importar componente ListarTemasRelevantes
+import  ListarTemasRelevantes  from './components/ListarTemasRelevantes'
 
 
 //Importar Estilos 
@@ -74,7 +76,7 @@ class App extends Component {
 
             <div className="dropdown-menu">
               <Link className="dropdown-item" to="/listarpreguntas">Preguntas</Link>  
-              <Link className="dropdown-item" to="/grupointeres">Tema Relevante</Link>  
+              <Link className="dropdown-item" to="/listartemasrelevantes">Tema Relevante</Link>  
             </div>
 
           </li>
@@ -96,6 +98,8 @@ class App extends Component {
           <Route path="/registrousuario" component= {RegistroUsuario} />
           <Route path="/encuesta" component= {Encuesta} />
           <Route path="/listarpreguntas" component= {ListarPreguntas} />
+          <Route path="/listartemasrelevantes" component= {ListarTemasRelevantes} />
+          
         </div>
       </Router>
     );
