@@ -9,7 +9,12 @@ class ListarTemasRelevantes extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            temasrelevantes: [{}]
+            temasrelevantes: [{
+                Id: '',
+                Name: '',
+                Active:'',
+                Number:''
+            }]
         }
     
         
@@ -20,7 +25,7 @@ class ListarTemasRelevantes extends React.Component {
             this.setState({
                 temasrelevantes : response.data
             })
-            console.log(this.state.temarelevante);  
+            console.log(this.state.temasrelevantes);  
         })
         .catch(function (error) {
           console.log(error);
@@ -36,43 +41,24 @@ class ListarTemasRelevantes extends React.Component {
             <div className="container">
                 <h4 className="col-form-label">Listado de Temas Relevantes</h4>
 
-                <div className="card mb-3" >
-                    <div className="card-body">
-                        <h5 className="card-title">Transparencia y lucha contra corrupción</h5>
-                        <h6 className="card-subtitle mb-2 ">Ambiental</h6>
-                        <p className="card-text mb-0">Externa - Contratista</p>
-                        <p className="card-text mb-0">Externa - Comunidades</p>
-                        <small className="text-muted"><a href="#">Editar</a></small>
-                    </div>
-                </div>
-
-                <div className="card mb-3" >
-                    <div className="card-body">
-                        <h5 className="card-title">Comunicación y atención</h5>
-                        <h6 className="card-subtitle mb-2">Social</h6>
-                        <p className="card-text mb-0">Interna - Socios</p>
-                        <small className="text-muted"><a href="#">Editar</a></small>
-                    </div>
-                </div>
-                        
-                <div className="card mb-3" >
-                    <div className="card-body">
-                        <h5 className="card-title">Responsabilidad con la comunidad</h5>
-                        <h6 className="card-subtitle mb-2 ">Ambiental</h6>
-                        <p className="card-text mb-0">Interna - Comunidades</p>
-                        <small className="text-muted"><a href="#">Editar</a></small>
-                    </div>
-                </div>
-
                 {this.state.temasrelevantes.map( (temarelevante) => 
-                        <div className="card mb-3" >
-                        <div className="card-body">
-                            <h5 className="card-title">{temarelevante.Name}</h5>
-                            <h6 className="card-subtitle mb-2 ">{temarelevante.Active}</h6>
-                            <p className="card-text mb-0">{temarelevante.Number}</p>
-                            <small className="text-muted"><a href="#">Editar</a></small>
+
+                <div className="card mb-3" key={temarelevante.Id}>
+                    <div className="card-body">
+                        <h6 className="card-title">{temarelevante.Name}</h6>
+                        <h6 className="card-subtitle mb-2 ">{temarelevante.Dimension}</h6>
+                    </div>
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-center">
+                            <div className="col-sm-6 text-right">
+                                <button type="button" className="btn btn-success btn-sm">Editar</button>
+                            </div>
+                            <div className="col-sm-6 text-left">
+                                <button type="button" className="btn btn-danger btn-sm">Eliminar</button>
+                            </div>
                         </div>
-                    </div>    
+                    </div>
+                </div>       
                         
                     )}
                 

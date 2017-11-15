@@ -9,7 +9,18 @@ class ListarPreguntas extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            preguntas : [{}],
+            preguntas : [{
+                Activo: '',
+                Description: '',
+                Id:'',
+                Name:'',
+                TemaRelevante:{
+                    Active:'',
+                    Id:'',
+                    Name:'',
+                    Number:''
+                }
+            }],
             temarelevante: [{}]
         }
     
@@ -48,18 +59,26 @@ class ListarPreguntas extends React.Component {
             
             <div className="container">
                 <h4 className="col-form-label">Listado de preguntas</h4>
-
                         
                     {this.state.preguntas.map( (pregunta) => 
-                            
-                        <div className="card-body pb-0" key={pregunta.Id} >
-                            <div className="list-group">
-                                <div className="list-group-item list-group-item-action flex-column align-items-start">
-                                    <p className="mb-1" >{pregunta.Name}</p>
-                                    <small className="text-muted"><a href="#">Editar</a></small>
-                                </div>
-                            </div>
+
+                    <div className="card mb-3" key={pregunta.Id}>
+                        <div className="card-body">
+                            <h6 className="card-title">{pregunta.Name}</h6>
+                            <h6 className="card-subtitle mb-2 ">{pregunta.TemaRelevante.Name}</h6>
                         </div>
+                        <div className="card-footer">
+                            <div className="d-flex justify-content-center">
+                                <div className="col-sm-6 text-right">
+                                <button type="button" className="btn btn-success btn-sm">Editar</button>
+                                </div>
+                            <div className="col-sm-6 text-left">
+                                <button type="button" className="btn btn-danger btn-sm">Eliminar</button>
+                            </div>
+                    </div>
+                        </div>
+                    </div>    
+                     
                     )}
                 
 

@@ -94,7 +94,7 @@ class AsignarPregunta extends React.Component {
 
             <div className="d-flex justify-content-center">
                     <div className="col-sm-6 text-center">
-                        <button type="submit" className="btn btn-success">Asignar preguntas</button>
+                        <button type="submit" className="btn btn-success">Publicar preguntas</button>
                     </div>
 
             </div>

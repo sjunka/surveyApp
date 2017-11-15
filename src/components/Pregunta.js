@@ -1,6 +1,10 @@
 //Importar componentes React
 import React from 'react';
 
+//Importar Axios
+import axios from 'axios';
+
+
 class Pregunta extends React.Component {
     constructor(props){
         super(props)
@@ -8,11 +12,17 @@ class Pregunta extends React.Component {
             descripcion : '',
             dimension:'',
             temarelevante: '',
-            tipo : '',
+            tipo : 'Abierta',
             grupointeres:''
         }
     
+       
+
+
+
     }
+
+    
     
     
     render (){
@@ -124,8 +134,29 @@ class Pregunta extends React.Component {
         )
     }
 
+    
+
+//'https://jsonplaceholder.typicode.com/posts'
+
     handleSubmit = (e) => {
         console.log(this.state);
+            let url = 'http://190.85.67.146/TEST/MATERIALIDAD/api/Pregunta';
+         //traer preguntas
+         axios.post(url,{
+            descripcion : this.state.descripcion,
+            dimension : this.state.dimension,
+            grupointeres : this.state.grupointeres,
+            temarelevante : this.state.temarelevante,
+            tipo : this.state.tipo
+        })
+        .then( (response) => {
+            console.log(response);  
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
         e.preventDefault();
     }
 
