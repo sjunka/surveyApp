@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
+
 //******************************
 // Import Containers(HOC) y Components 
 //******************************
@@ -15,8 +16,10 @@ import Layout from './hoc/Layout/Layout';
 // Import Internal Components 
 //******************************
 
-/*
-import  Dimension  from './components/Dimension';
+import  Landing  from './components/Landing/Landing';
+import  Dimension  from './containers/Dimension/Dimension';
+
+/*}
 import  Cobertura  from './components/Cobertura';
 import  TemaRelevante  from './components/TemaRelevante';
 import  GrupoInteres  from './components/GrupoInteres';
@@ -36,6 +39,8 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
         <div>
           <Layout>
             <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route exact path="/dimension" component= {Dimension} />
               {/*
               <Route path="/" exact component={Lading} />
               <Route path="/grupointeres" component= {GrupoInteres} />
