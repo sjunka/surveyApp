@@ -1,67 +1,90 @@
 //Importar componentes React
-import React from 'react';
+import React, { Component } from 'react';
+
 //Importar componente Axios
 import axios from '../../axios-orders';
+//import DimensionList component
+import Dimensionlist from '../../components/Dimension/DimensionList';
 
 
-class Dimension extends React.Component {
+class Dimension extends Component {
     constructor(props){
         super(props)
         this.state = {
-            dimension: {
-                nombre : null,
-                descripcion : null
-            }
+            dimensiones : []
         }
     
     }
+
+componentDidMount () {
     
+    axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
+        .then( response => {
+            console.log("la respuesta del server es:", response);
+            
+            const dimensionesUpdated = [];
+            
+            for (let key in response.data){
+                dimensionesUpdated.push({
+                    ...response.data[key],
+                    id: key
+                });
+
+            }
+            this.setState( { dimensiones: dimensionesUpdated } );
+
+            console.log(this.state.dimensiones);
+        })
+        .catch( error => {
+            console.log(error);
+        } );
+    }
+
+
+
     
     render (){
-        return(
-        <div className="container">
-            
-            <h4 className="col-form-label">Dimension</h4>
-            <form onSubmit={this.handleSubmit}>
 
-                <div className="form-group">
-                    <label className="col-form-label">Nombre:</label>
-                        <div className="">
-                            <input className="form-control"
-                            value={this.state.nombre}
-                            onChange={this.handleNombre}
-                            type="text"/>
-                            <small id="namehelp" className="form-text text-muted">Nombre de  la dimensión</small>
-                        </div>
+        
+            let dimensiones = this.state.dimensiones.map( dimension => {
+                return (
+                    <Dimensionlist
+                        key={dimension.id}
+                        name={dimension.nombre}
+                        description={dimension.descripcion}
+                        edit={() => this.dimensionSelectedHandler(dimension.id)} 
+                    />
+                    
+                );
+            });
+
+        
+    
+        
+        return (
+            <div>
+                <div className="col-sm-12 text-left mb-2">
+                    <button 
+                    type="button" 
+                    className="btn btn-outline-info btn-sm"
+                    onClick = {() => this.dimensionGoBackHandler()}
+                    >Volver</button>
                 </div>
 
-                <div className="form-group">
-                        <label className="col-form-label">Descripcion:</label>
-                        <div className="">
-                            <textarea 
-                            className="form-control" 
-                            value = {this.state.descripcion}
-                            onChange = {this.handleDescripcion}>
-                            </textarea>
-                           <small id="namehelp" className="form-text text-muted">Describle la dimensión</small>
-                        </div>
-                    </div>
-
-                <div className="d-flex justify-content-center">
-                    <div className="col-sm-6 text-right">
-                        <button type="submit" className="btn btn-success">Guardar</button>
-
-                    </div>
-                    <div className="col-sm-6 text-left mb-2">
-                        <button type="button" className="btn btn-danger">Cancelar</button>
-
-                    </div>
+                <div className="col-sm-12 text-right mb-2">
+                    <button 
+                    type="button" 
+                    className="btn btn-outline-info btn-sm"
+                    onClick = {() => this.dimensionGoBackHandler()}
+                    >Crear</button>
                 </div>
 
-            </form>
+                <section >
+                {dimensiones}
+                </section>
 
-         </div>
-        )
+            </div>
+        );
     }
 
     handleSubmit = (e) => {
@@ -76,32 +99,22 @@ class Dimension extends React.Component {
         e.preventDefault();
     }
 
-    handleNombre = (e) => {
-        this.setState ({
-            nombre: e.target.value
-        })
+
+    dimensionSelectedHandler = (id) => {
+        console.log(id);
     }
 
-    handleDescripcion = (e) => {
-        this.setState ({
-            descripcion: e.target.value 
-        })
+    dimensionGoBackHandler = () => {
+        this.props.history.goBack();
     }
-
-    componentDidMount () {
-        axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
-            .then( response => {
-                console.log("la respuesta del server es:", response);
-                this.setState({
-                    dimension: response.data 
-                });
-            })
-            .catch( error => {
-                console.log(error);
-            } );
-    }
-
+   
 }
 
+/* const updatedDimensions = dimensiones.map( dimension => {
+                return {
+                        ...dimension
+                       }
+            } );
+*/
 
 export default Dimension;
