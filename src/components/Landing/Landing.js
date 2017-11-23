@@ -16,30 +16,43 @@ class Landing extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                    <div className="col-sm-6">
-                        <div className="card mb-2">
-                            <div className="card-body">
-                            <h4 className="card-title">Dimension</h4>
-                            <p className="card-text">
-                                Menu para crear o editar Dimensiones.
-                            </p>
-                            <Link className="btn btn-primary" to='/dimension'>Ver Mas</Link>
+                        <div className="col-sm-6">
+                            <div className="card mb-2">
+                                <div className="card-body">
+                                <h4 className="card-title">Dimensión</h4>
+                                <p className="card-text">
+                                    Menu para crear o editar dimensiones.
+                                </p>
+                                <Link className="btn btn-primary" to='/dimension'>Ver Más</Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-sm-6">
-                    <div className="card mb-2">
-                        <div className="card-body">
-                        <h4 className="card-title">Cobertura</h4>
-                        <p className="card-text">
-                        Menu para crear o editar Coberturas
-                        </p>
-                        <a href="/dimension" className="btn btn-primary">Listar</a>
+                        <div className="col-sm-6">
+                            <div className="card mb-2">
+                                <div className="card-body">
+                                <h4 className="card-title">Cobertura</h4>
+                                <p className="card-text">
+                                Menu para crear o editar coberturas.
+                                </p>
+                                <Link className="btn btn-primary" to='/cobertura'>Ver Más</Link>
+                                </div>
+                            </div>
                         </div>
+
+                        <div className="col-sm-6">
+                            <div className="card mb-2">
+                                <div className="card-body">
+                                <h4 className="card-title">Tema Relevante</h4>
+                                <p className="card-text">
+                                Menu para crear o editar temas relevantes.
+                                </p>
+                                <Link className="btn btn-primary" to='/temarelevante'>Ver más</Link>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
         );

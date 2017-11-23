@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const dimension = (props) => (
+const cobertura = (props) => (
     <div>
          <div className="container">
             <div className="row">
@@ -9,9 +9,9 @@ const dimension = (props) => (
 
                     <div className="card mb-2">
                         <div className="card-body">
-                            <h4 className="card-title">{props.name}</h4>
+                            <h6 className="card-title">{props.name}</h6>
                             <p className="card-text">
-                                {props.description}
+                                Tipo: {props.tipo}
                             </p>
 
                         </div>
@@ -31,7 +31,6 @@ const dimension = (props) => (
                                     type="button" 
                                     className="btn btn-danger btn-sm"
                                     onClick={props.delete}
-                                    disabled
                                     >Eliminar</button>
                                 </div>
                             </div>
@@ -44,4 +43,4 @@ const dimension = (props) => (
    
 );
 
-export default dimension;
+export default cobertura;

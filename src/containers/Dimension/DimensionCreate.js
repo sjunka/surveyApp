@@ -52,18 +52,31 @@ class DimensionCreate extends Component {
                             </div>
 
                         
+                            <div className="d-flex justify-content-center">
+                                <div className="col-sm-6 text-right">
+                                    
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-success btn-sm"
+                                        onClick = {this.handleSubmit}
+                                        >Guardar</button>
+                                </div>
+                                <div className="col-sm-6 text-left">
 
-                            <button 
-                            type="button" 
-                            className="btn btn-success btn-sm"
-                            onClick = {this.handleSubmit}
-                            >Guardar</button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={this.goBackHandler} 
+                                        >Cancelar
+                                    </button>        
 
-                            <button
-                             type="button"
-                             className="btn btn-warning btn-sm"
-                             onClick={this.goBackHandler} 
-                             >Cancelar</button>
+                                </div>
+                            </div>
+
+                           
+
+                            
+                             
                             </form>
 
 

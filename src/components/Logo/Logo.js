@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import sigmaLogo from '../../assets/images/sigma_logo.png';
 import classes from './Logo.css';
 

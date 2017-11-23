@@ -17,12 +17,15 @@ import Layout from './hoc/Layout/Layout';
 //******************************
 
 import  Landing  from './components/Landing/Landing';
+
 import  Dimension  from './containers/Dimension/Dimension';
 import  DimensionCreate  from './containers/Dimension/DimensionCreate';
 
+import  TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
+
+import  Cobertura  from './containers/Cobertura/Cobertura';
+
 /*}
-import  Cobertura  from './components/Cobertura';
-import  TemaRelevante  from './components/TemaRelevante';
 import  GrupoInteres  from './components/GrupoInteres';
 import  Pregunta  from './components/Pregunta';
 import  RegistroUsuario  from './components/RegistroUsuario';
@@ -41,15 +44,18 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
           <Layout>
             <Switch>
             <Route path="/" exact component={Landing} />
+
             <Route exact path="/dimension" component= {Dimension} />
             <Route exact path="/dimension/new" component= {DimensionCreate} />
+
+            <Route path="/temarelevante" component= {TemaRelevante} />
+
+            <Route path="/cobertura" component= {Cobertura} />
             
               {/*
               <Route path="/" exact component={Lading} />
               <Route path="/grupointeres" component= {GrupoInteres} />
               <Route exact path="/dimension" component= {Dimension} />
-              <Route path="/cobertura" component= {Cobertura} />
-              <Route path="/temarelevante" component= {TemaRelevante} />
               <Route path="/pregunta" component= {Pregunta} />
               <Route path="/registrousuario" component= {RegistroUsuario} />
               <Route path="/encuesta" component= {Encuesta} />
