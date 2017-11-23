@@ -6,9 +6,6 @@ const dimension = (props) => (
          <div className="container">
             <div className="row">
                 <div className="col-sm-12 col-md-12">
-                
-                
-
 
                     <div className="card mb-2">
                         <div className="card-body">
@@ -30,13 +27,13 @@ const dimension = (props) => (
 
                                 </div>
                                 <div className="col-sm-4 text-left mb-2">
-                                    <button type="button" className="btn btn-danger btn-sm">Eliminar</button>
+                                    <button 
+                                    type="button" 
+                                    className="btn btn-danger btn-sm"
+                                    onClick={props.delete}
+                                    >Eliminar</button>
                                 </div>
-
-                              
-                            
                             </div>
-                            
                         </div>
                     </div>
                 </div>

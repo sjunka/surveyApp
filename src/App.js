@@ -18,6 +18,7 @@ import Layout from './hoc/Layout/Layout';
 
 import  Landing  from './components/Landing/Landing';
 import  Dimension  from './containers/Dimension/Dimension';
+import  DimensionCreate  from './containers/Dimension/DimensionCreate';
 
 /*}
 import  Cobertura  from './components/Cobertura';
@@ -41,6 +42,8 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
             <Switch>
             <Route path="/" exact component={Landing} />
             <Route exact path="/dimension" component= {Dimension} />
+            <Route exact path="/dimension/new" component= {DimensionCreate} />
+            
               {/*
               <Route path="/" exact component={Lading} />
               <Route path="/grupointeres" component= {GrupoInteres} />
