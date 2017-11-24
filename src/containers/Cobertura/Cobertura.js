@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 //Importar componente Axios
 import axios from '../../axios-orders';
 
-//import DimensionList component
-import Coberturalist from '../../components/Cobertura/CoberturaList';
+//import CoberturaList component
+//import Dimensionlist from '../../components/Dimension/DimensionList';
+import CoberturaList from '../../components/Cobertura/CoberturaList';
 
 
 
@@ -52,10 +53,10 @@ componentDidMount () {
         
             let coberturas = this.state.coberturas.map( cobertura => {
                 return (
-                    <Coberturalist
+                    <CoberturaList
                         key={cobertura.Id}
                         name={cobertura.Name}
-                        tipo={cobertura.tipo}
+                        tipo={cobertura.TipoCoberturaDesc}
                         edit={() => this.coberturaSelectedHandler(cobertura.Id)} 
                         delete={() => this.coberturaDeletedHandler(cobertura.Id)}
                     />
@@ -107,7 +108,7 @@ componentDidMount () {
     coberturaDeletedHandler = (id) => {
         console.log(id);
         
-        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        axios.delete('http://192.168.2.107/TEST/MATERIALIDAD/API/Cobertura/' + id)
         .then(response => {
             console.log(response);
         })

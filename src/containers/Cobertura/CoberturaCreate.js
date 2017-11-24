@@ -6,12 +6,12 @@ import axios from '../../axios-orders';
 
 
 
-class DimensionCreate extends Component {
+class CoberturaCreate extends Component {
     constructor(props){
         super(props)
         this.state = {
             nombre : '',
-            descripcion : '', 
+            tipo : '1', 
         }
     
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,7 +23,7 @@ class DimensionCreate extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                         <h4>Dimensión</h4>
+                         <h4>Cobertura</h4>
                         <form>
 
                             <div className="form-group">
@@ -31,25 +31,27 @@ class DimensionCreate extends Component {
                                 <input 
                                 type="text" 
                                 className="form-control" 
-                                placeholder="Nombre dimensión"
+                                placeholder="Nombre cobertura"
                                 name="nombre"
                                 onChange={this.handleInputChange}
                                 value={this.state.nombre}
                                 />
-                                <small className="form-text text-muted">Ej: Ambiental</small>
+                                <small className="form-text text-muted">Ej: Vicepresidencia de mercadeo</small>
                             </div>
 
 
                             <div className="form-group">
-                                <label htmlFor="descripcion">Descripcion</label>
-                                <textarea 
-                                className="form-control" 
-                                rows="3"
-                                name="descripcion"
-                                onChange={this.handleInputChange}
-                                value={this.state.descripcion}
-                                />
+                                <label className="col-form-label">Tipo de cobertura:</label>
+                                <select  
+                                className="form-control custom-select" 
+                                value={this.state.tipo}
+                                name="tipo" 
+                                onChange={this.handleInputChange}>
+                                    <option value="1">Interna</option>
+                                    <option value="2">Externa</option>
+                                </select>
                             </div>
+
 
                         
                             <div className="d-flex justify-content-center">
@@ -92,20 +94,26 @@ class DimensionCreate extends Component {
 
     handleSubmit = (e) => {
         console.log(this.state);
-        const dimension = {
-            nombre : this.state.nombre,
-            descripcion : this.state.descripcion
+        const cobertura = {
+            Active:true,
+            Id:9,
+            Name:this.state.nombre,
+            Number:null,
+            TipoCobertura: this.state.tipo.toString(),
+            TipoCoberturaDesc: "Interna",
+            id:"0"
         }
         
-        axios.post('https://sigmamaterialidad.firebaseio.com/dimension.json',dimension)
+        axios.post('http://192.168.2.107/TEST/MATERIALIDAD/API/Cobertura', cobertura)
         .then(response => 
             this.setState({
                 nombre : '',
-                descripcion : ''
+                tipo : '1'
             })    
         )
         .catch(error => console.log(error));
         e.preventDefault();
+        console.log(cobertura);
         
     }
 
@@ -115,16 +123,20 @@ class DimensionCreate extends Component {
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        
+        const value = target.type === 'select' ? target.checked : target.value;
+        
         const name = target.name;
     
         this.setState({
           [name]: value
         });
+
+    
       }
    
 }
 
 
 
-export default DimensionCreate;
+export default CoberturaCreate;

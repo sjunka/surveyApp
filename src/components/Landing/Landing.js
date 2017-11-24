@@ -23,7 +23,7 @@ class Landing extends Component {
                                 <p className="card-text">
                                     Menu para crear o editar dimensiones.
                                 </p>
-                                <Link className="btn btn-primary" to='/dimension'>Ver Más</Link>
+                                <Link className="btn btn-primary" to='/dimension'>Ver más</Link>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@ class Landing extends Component {
                                 <p className="card-text">
                                 Menu para crear o editar coberturas.
                                 </p>
-                                <Link className="btn btn-primary" to='/cobertura'>Ver Más</Link>
+                                <Link className="btn btn-primary" to='/cobertura'>Ver más</Link>
                                 </div>
                             </div>
                         </div>

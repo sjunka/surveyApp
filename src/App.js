@@ -24,6 +24,7 @@ import  DimensionCreate  from './containers/Dimension/DimensionCreate';
 import  TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
 
 import  Cobertura  from './containers/Cobertura/Cobertura';
+import  CoberturaCreate  from './containers/Cobertura/CoberturaCreate';
 
 /*}
 import  GrupoInteres  from './components/GrupoInteres';
@@ -46,11 +47,13 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
             <Route path="/" exact component={Landing} />
 
             <Route exact path="/dimension" component= {Dimension} />
+            <Route exact path="/cobertura" component= {Cobertura} />
+            
+            <Route exact path="/cobertura/new"   component= {CoberturaCreate} />
             <Route exact path="/dimension/new" component= {DimensionCreate} />
 
             <Route path="/temarelevante" component= {TemaRelevante} />
 
-            <Route path="/cobertura" component= {Cobertura} />
             
               {/*
               <Route path="/" exact component={Lading} />
