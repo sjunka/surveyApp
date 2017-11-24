@@ -94,17 +94,32 @@ class CoberturaCreate extends Component {
 
     handleSubmit = (e) => {
         console.log(this.state);
-        const cobertura = {
-            Active:true,
-            Id:9,
-            Name:this.state.nombre,
-            Number:null,
-            TipoCobertura: this.state.tipo.toString(),
-            TipoCoberturaDesc: "Interna",
-            id:"0"
-        }
+
+        var params = new URLSearchParams();
+        params.append('Active', true);
+        params.append('Id', '');
+        params.append('Name', this.state.nombre);
+
+        params.append('Number', '');
+
+        params.append('TipoCobertura', this.state.tipo.toString());
+
+        params.append('TipoCoberturaDesc', '');
+        params.append('id', '0');
         
-        axios.post('http://192.168.2.107/TEST/MATERIALIDAD/API/Cobertura', cobertura)
+        // axios.post('/foo', params);
+
+        // const cobertura = {
+        //     Active:true,
+        //     Id:9,
+        //     Name:this.state.nombre,
+        //     Number:null,
+        //     TipoCobertura: this.state.tipo.toString(),
+        //     TipoCoberturaDesc: "Interna",
+        //     id:"0"
+        // }
+        
+        axios.post('/Cobertura', params)
         .then(response => 
             this.setState({
                 nombre : '',
@@ -113,7 +128,7 @@ class CoberturaCreate extends Component {
         )
         .catch(error => console.log(error));
         e.preventDefault();
-        console.log(cobertura);
+        console.log(params);
         
     }
 
