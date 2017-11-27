@@ -18,6 +18,8 @@ import Layout from './hoc/Layout/Layout';
 
 import  Landing  from './components/Landing/Landing';
 
+import  Inicio  from './components/Inicio/Inicio';
+
 import  Dimension  from './containers/Dimension/Dimension';
 import  DimensionCreate  from './containers/Dimension/DimensionCreate';
 
@@ -26,14 +28,17 @@ import  TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
 import  Cobertura  from './containers/Cobertura/Cobertura';
 import  CoberturaCreate  from './containers/Cobertura/CoberturaCreate';
 
-/*}
-import  GrupoInteres  from './components/GrupoInteres';
-import  Pregunta  from './components/Pregunta';
-import  RegistroUsuario  from './components/RegistroUsuario';
-import  Encuesta  from './components/Encuesta';
-import  ListarPreguntas  from './components/ListarPreguntas';
-import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
-*/
+import  GrupoInteres  from './containers/GrupoInteres/GrupoInteres';
+
+import  Pregunta  from './containers/Pregunta/Pregunta';
+
+import Usuario from './containers/Usuario/Usuario';
+
+import Encuesta from './containers/Encuesta/Encuesta';
+
+import Resultado from './containers/Resultado/Resultado';
+
+
 
 //Importar Estilos 
 //import './App.css';
@@ -44,7 +49,8 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
         <div>
           <Layout>
             <Switch>
-            <Route path="/" exact component={Landing} />
+            <Route exact path="/"  component={Landing} />
+            <Route exact path="/inicio"  component={Inicio} />
 
             <Route exact path="/dimension" component= {Dimension} />
             <Route exact path="/cobertura" component= {Cobertura} />
@@ -52,19 +58,19 @@ import  ListarTemasRelevantes  from './components/ListarTemasRelevantes';
             <Route exact path="/cobertura/new"   component= {CoberturaCreate} />
             <Route exact path="/dimension/new" component= {DimensionCreate} />
 
-            <Route path="/temarelevante" component= {TemaRelevante} />
+            <Route exact path="/temarelevante" component= {TemaRelevante} />
+
+            <Route exact path="/grupointeres" component= {GrupoInteres} />
+
+            <Route exact path="/pregunta" component= {Pregunta} />
+
+            <Route exact path="/usuario" component= {Usuario} />
+
+            <Route exact path="/encuesta" component= {Encuesta} />
+
+            <Route exact path="/resultado" component= {Resultado} />
 
             
-              {/*
-              <Route path="/" exact component={Lading} />
-              <Route path="/grupointeres" component= {GrupoInteres} />
-              <Route exact path="/dimension" component= {Dimension} />
-              <Route path="/pregunta" component= {Pregunta} />
-              <Route path="/registrousuario" component= {RegistroUsuario} />
-              <Route path="/encuesta" component= {Encuesta} />
-              <Route path="/listarpreguntas" component= {ListarPreguntas} />
-              <Route path="/listartemasrelevantes" component= {ListarTemasRelevantes} />
-              */}
             </Switch>
           </Layout>
         </div>

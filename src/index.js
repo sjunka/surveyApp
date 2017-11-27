@@ -9,6 +9,9 @@ import './index.css';
 //Importar componentes
 import App from './App';
 
+//Adding Chat library to window.object
+window.Highcharts = require('highcharts');
+
 //Wrapping App component into BrowserRouter for routing the aplication
 const app = (
     <BrowserRouter>
