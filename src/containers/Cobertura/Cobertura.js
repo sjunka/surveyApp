@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 //Importar componente Axios
 import axios from '../../axios-orders';
 
-//import CoberturaList component
-//import Dimensionlist from '../../components/Dimension/DimensionList';
 import CoberturaList from '../../components/Cobertura/CoberturaList';
 
 
@@ -106,14 +104,16 @@ componentDidMount () {
     }
 
     coberturaDeletedHandler = (id) => {
-        console.log(id);
         
-        axios.delete('http://192.168.2.107/TEST/MATERIALIDAD/API/Cobertura/' + id)
+        const idcober = id.toString();
+        console.log(idcober);
+        
+        axios.delete(`/Cobertura/${idcober}`)
         .then(response => {
-            console.log(response);
+            console.log('la cobertura se elimino correctamente',response);
         })
         .catch( error => {
-            console.log(error);
+            console.log('error la cobertura no pudo ser borrada por el suguiente motivo: ',error);
         } );;
     }
 

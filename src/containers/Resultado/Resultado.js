@@ -33,7 +33,6 @@ componentDidMount () {
                     <div className="col-sm-12">
                     <h4>Resultados de la encuesta:</h4>
                     <ScatterChart 
-  /*                  data={[[1, 2], [2, 2.5], [3, 3], [4, 2.5], [5, 3],[5, 3],[6, 2.5],[7, 3],[8, 2.5],[9, 3.5],[10, 3.5]]}   */
                     data = {[
                             {"name":"Asunto Relevante", 
                              "data": {"1": 2, "2": 2.5, "3":3, "4":3.5, "5":3.5, "6":3, "7":2, "8":2.5, "9":3 , "10":3    }}
