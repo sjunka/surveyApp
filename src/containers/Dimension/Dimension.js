@@ -17,31 +17,31 @@ class Dimension extends Component {
     
     }
 
-componentDidMount () {
-    
-    axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
-        .then( response => {
-            console.log("la respuesta del server es:", response);
-            
-            const dimensionesUpdated = [];
-            
-            for (let key in response.data){
-                dimensionesUpdated.push({
-                    ...response.data[key],
-                    id: key
-                });
-
-            }
-            this.setState( { dimensiones: dimensionesUpdated } );
-
-            console.log(this.state.dimensiones);
-        })
-        .catch( error => {
-            console.log(error);
-        } );
-
+    componentDidMount () {
         
-    }
+        axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
+            .then( response => {
+                console.log("la respuesta del server es:", response);
+                
+                const dimensionesUpdated = [];
+                
+                for (let key in response.data){
+                    dimensionesUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+
+                }
+                this.setState( { dimensiones: dimensionesUpdated } );
+
+                console.log(this.state.dimensiones);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+
+            
+    }   
 
 
 

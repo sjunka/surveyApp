@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 //Importar componente Axios
 import axios from '../../axios-orders';
 
-//import DimensionList component
-import Dimensionlist from '../../components/Dimension/DimensionList';
 
 
 
@@ -13,58 +11,16 @@ class TemaRelevante extends Component {
     constructor(props){
         super(props)
         this.state = {
-            dimensiones : []
+            dimensiones : [],
+            coberturas : []
         }
     
-    }
-
-componentDidMount () {
-    
-    axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
-        .then( response => {
-            console.log("la respuesta del server es:", response);
-            
-            const dimensionesUpdated = [];
-            
-            for (let key in response.data){
-                dimensionesUpdated.push({
-                    ...response.data[key],
-                    id: key
-                });
-
-            }
-            this.setState( { dimensiones: dimensionesUpdated } );
-
-            console.log(this.state.dimensiones);
-        })
-        .catch( error => {
-            console.log(error);
-        } );
-
-        
     }
 
 
 
     
     render (){
-
-        
-            let dimensiones = this.state.dimensiones.map( dimension => {
-                return (
-                    <Dimensionlist
-                        key={dimension.id}
-                        name={dimension.nombre}
-                        description={dimension.descripcion}
-                        edit={() => this.dimensionSelectedHandler(dimension.id)} 
-                        delete={() => this.dimensionDeletedHandler(dimension.id)}
-                    />
-                    
-                );
-            });
-
-        
-    
         
         return (
             <div>
@@ -97,7 +53,14 @@ componentDidMount () {
                 </div>
 
                 <section >
-                {dimensiones}
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                            aqui van mis temas relevantes
+
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
             </div>
@@ -124,7 +87,7 @@ componentDidMount () {
     
 
     goCreateHandler = () => {
-        this.props.history.push('/dimension/new');
+        this.props.history.push('/temarelevante/new');
     }
 
     goBackHandler = () => {

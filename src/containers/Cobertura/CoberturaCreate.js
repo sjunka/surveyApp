@@ -27,7 +27,7 @@ class CoberturaCreate extends Component {
                         <form>
 
                             <div className="form-group">
-                                <label htmlFor="nombre">Nombre</label>
+                                <label className="col-form-label" htmlFor="nombre">Nombre</label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -96,28 +96,12 @@ class CoberturaCreate extends Component {
         console.log(this.state);
 
         var params = new URLSearchParams();
-        params.append('Active', true);
-        params.append('Id', '');
         params.append('Name', this.state.nombre);
 
-        params.append('Number', '');
 
         params.append('TipoCobertura', this.state.tipo.toString());
 
-        params.append('TipoCoberturaDesc', '');
-        params.append('id', '0');
         
-        // axios.post('/foo', params);
-
-        // const cobertura = {
-        //     Active:true,
-        //     Id:9,
-        //     Name:this.state.nombre,
-        //     Number:null,
-        //     TipoCobertura: this.state.tipo.toString(),
-        //     TipoCoberturaDesc: "Interna",
-        //     id:"0"
-        // }
         
         axios.post('/Cobertura', params)
         .then(response => 

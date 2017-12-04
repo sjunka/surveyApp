@@ -42,6 +42,18 @@ class Inicio extends Component {
                                 </div>
                             </div>
                         </div>
+                        
+                        <div className="col-sm-6">
+                            <div className="card mb-2">
+                                <div className="card-body">
+                                <h4 className="card-title">Grupo de interes</h4>
+                                <p className="card-text">
+                                Menu para crear o editar Grupo de interes.
+                                </p>
+                                <Link className="btn btn-primary" to='/grupointeres'>Ver más</Link>
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="col-sm-6">
                             <div className="card mb-2">
@@ -55,17 +67,6 @@ class Inicio extends Component {
                             </div>
                         </div>
 
-                        <div className="col-sm-6">
-                            <div className="card mb-2">
-                                <div className="card-body">
-                                <h4 className="card-title">Grupo de interes</h4>
-                                <p className="card-text">
-                                Menu para crear o editar Grupo de interes.
-                                </p>
-                                <Link className="btn btn-primary" to='/grupodeinteres'>Ver más</Link>
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="col-sm-6">
                             <div className="card mb-2">

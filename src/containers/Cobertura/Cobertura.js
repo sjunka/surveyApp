@@ -44,6 +44,29 @@ componentDidMount () {
     }
 
 
+    componentDidUpdate() {
+        axios.get( '/Cobertura' )
+        .then( response => {
+            console.log("la respuesta del server es:", response);
+            
+            const coberturasUpdated = [];
+            
+            for (let key in response.data){
+                coberturasUpdated.push({
+                    ...response.data[key],
+                    id: key
+                });
+
+            }
+            this.setState( { coberturas: coberturasUpdated } );
+
+            console.log(this.state.coberturas);
+        })
+        .catch( error => {
+            console.log(error);
+        } );
+    }
+
 
     
     render (){

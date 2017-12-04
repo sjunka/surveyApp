@@ -16,21 +16,23 @@ import Layout from './hoc/Layout/Layout';
 // Import Internal Components 
 //******************************
 
-import  Landing  from './components/Landing/Landing';
+import Landing  from './components/Landing/Landing';
 
-import  Inicio  from './components/Inicio/Inicio';
+import Inicio  from './components/Inicio/Inicio';
 
-import  Dimension  from './containers/Dimension/Dimension';
-import  DimensionCreate  from './containers/Dimension/DimensionCreate';
+import Dimension  from './containers/Dimension/Dimension';
+import DimensionCreate  from './containers/Dimension/DimensionCreate';
 
-import  TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
+import Cobertura  from './containers/Cobertura/Cobertura';
+import CoberturaCreate  from './containers/Cobertura/CoberturaCreate';
 
-import  Cobertura  from './containers/Cobertura/Cobertura';
-import  CoberturaCreate  from './containers/Cobertura/CoberturaCreate';
+import GrupoInteres  from './containers/GrupoInteres/GrupoInteres';
+import GrupoInteresCreate  from './containers/GrupoInteres/GrupoInteresCreate';
 
-import  GrupoInteres  from './containers/GrupoInteres/GrupoInteres';
+import TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
+import TemaRelevanteCreate  from './containers/TemaRelevante/TemaRelevanteCreate';
 
-import  Pregunta  from './containers/Pregunta/Pregunta';
+import Pregunta  from './containers/Pregunta/Pregunta';
 
 import Usuario from './containers/Usuario/Usuario';
 
@@ -59,8 +61,10 @@ import Resultado from './containers/Resultado/Resultado';
             <Route exact path="/dimension/new" component= {DimensionCreate} />
 
             <Route exact path="/temarelevante" component= {TemaRelevante} />
+            <Route exact path="/temarelevante/new" component= {TemaRelevanteCreate} />
 
             <Route exact path="/grupointeres" component= {GrupoInteres} />
+            <Route exact path="/grupointeres/new" component= {GrupoInteresCreate} />
 
             <Route exact path="/pregunta" component= {Pregunta} />
 

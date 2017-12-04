@@ -1,90 +1,163 @@
 //Importar componentes React
-import React from 'react';
+import React, { Component } from 'react';
 
-class GrupoInteres extends React.Component {
+//Importar componente Axios
+import axios from '../../axios-orders';
+
+import GrupoInteresList from '../../components/GrupoInteres/GrupoInteresList';
+
+
+
+class Cobertura extends Component {
     constructor(props){
         super(props)
         this.state = {
-            nombre : '',
-            descripcion : ''
+            gruposdeinteres : []
         }
     
     }
+
+componentDidMount () {
     
+    axios.get( '/GrupoInteres' )
+        .then( response => {
+            console.log("la respuesta del server es:", response);
+            
+            const gruposdeinteresUpdated = [];
+            
+            for (let key in response.data){
+                gruposdeinteresUpdated.push({
+                    ...response.data[key],
+                    id: key
+                });
+
+            }
+            this.setState( { gruposdeinteres: gruposdeinteresUpdated } );
+
+            console.log(this.state.gruposdeinteres);
+        })
+        .catch( error => {
+            console.log(error);
+        } );
+
+        
+    }
+
+
+    componentDidUpdate() {
+        
+        axios.get( '/GrupoInteres' )
+        .then( response => {
+            console.log("la respuesta del server es:", response);
+            
+            const gruposdeinteresUpdated = [];
+            
+            for (let key in response.data){
+                gruposdeinteresUpdated.push({
+                    ...response.data[key],
+                    id: key
+                });
+
+            }
+            this.setState( { gruposdeinteres: gruposdeinteresUpdated } );
+
+            console.log(this.state.gruposdeinteres);
+        })
+        .catch( error => {
+            console.log(error);
+        } );
+        
+    }
+
+
     
     render (){
-        return(
-        <div className="container">
-            <div className="col-sm12">
 
-            <h4 className="col-form-label">Grupo de Interes</h4>
-
-            <form onSubmit={this.handleSubmit}>
+        
+            let gruposdeinteres = this.state.gruposdeinteres.map( grupointeres => {
+                return (
+                    <GrupoInteresList
+                        key={grupointeres.Id}
+                        name={grupointeres.Name}
+                        edit={() => this.grupointeresSelectedHandler(grupointeres.Id)} 
+                        delete={() => this.grupointeresDeletedHandler(grupointeres.Id)}
+                    />
                     
-                <div className="form-group">
-                    <label className="col-form-label">Nombre:</label>
-                            <input className="form-control"
-                            value={this.state.nombre}
-                            onChange={this.handleNombre}
-                            type="text" 
-                            />
-                            <small id="namehelp" className="form-text text-muted">Nombre del grupo de interes</small>
-                </div>
+                );
+            });
 
-                <div className="form-group">
-                    <label>Descripcion:</label>
-                    <br/>
-                    <div className="">
-                        <textarea 
-                        className="form-control"
+        
+    
+        
+        return (
+            <div>
+                <div className="container">
+
+                    <div className="row mb-2">
+                        <div className="col align-self-start">
+            
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm"
+                            onClick = {this.goBackHandler}
+                            >Volver</button>
+
+                           
+            
+                        </div>
+            
+                        <div className="col align-self-end text-right">
                         
-                        value = {this.state.descripcion}
-                        onChange = {this.handleDescripcion}
-                        placeholder="">
-                        </textarea>
-                        <small id="namehelp" className="form-text text-muted">Descripción del grupo de interes</small>
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm "
+                            onClick = {this.goCreateHandler}
+                            >Crear</button>
+                                
+            
+                        </div>
                     </div>
                 </div>
 
+                <section >
+                {gruposdeinteres}
+                </section>
 
-
-
-                <div className="d-flex justify-content-center">
-                    <div className="col-sm-6 text-right">
-                        <button type="submit" className="btn btn-success">Guardar</button>
-
-                    </div>
-                    <div className="col-sm-6 text-left">
-                        <button type="button" className="btn btn-danger">Cancelar</button>
-
-                    </div>
-                </div>
-           
-
-            </form>
             </div>
-        </div>
-        )
+        );
     }
 
-    handleSubmit = (e) => {
-        console.log(this.state);
-        e.preventDefault();
-    }
-
-    handleNombre = (e) => {
-        this.setState ({
-            nombre: e.target.value
+    grupointeresDeletedHandler = (id) => {
+        
+        const idgrupodeinteres = id.toString();
+        console.log(idgrupodeinteres);
+        
+        axios.delete(`/GrupoInteres/${idgrupodeinteres}`)
+        .then(response => {
+            console.log('la cobertura se elimino correctamente',response);
         })
+        .catch( error => {
+            console.log('error la cobertura no pudo ser borrada por el suguiente motivo: ',error);
+        } );;
     }
 
-    handleDescripcion = (e) => {
-        this.setState ({
-            descripcion: e.target.value
-        })
+
+    grupointeresSelectedHandler = (id) => {
+        console.log(id);
     }
 
+    
+
+    goCreateHandler = () => {
+        this.props.history.push('/grupointeres/new');
+    }
+
+    goBackHandler = () => {
+        this.props.history.goBack();
+    }
+   
 }
 
 
-export default GrupoInteres;
+
+export default Cobertura;
