@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 //Importar componente Axios
 import axios from '../../axios-orders';
 
+//Importar componente TemaRelevanteLista para listar los temas
+import TemaRelevanteList from '../../components/TemaRelevante/TemaRelevanteList';
+
 
 
 
@@ -11,16 +14,55 @@ class TemaRelevante extends Component {
     constructor(props){
         super(props)
         this.state = {
-            dimensiones : [],
-            coberturas : []
+            temasrelevantes : []
         }
     
     }
+
+    componentDidMount () {
+        
+        axios.get( '/TemaRelevante' )
+            .then( response => {
+                console.log("la respuesta del server es:", response);
+                
+                const temasrelevantesUpdated = [];
+                
+                for (let key in response.data){
+                    temasrelevantesUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+    
+                }
+                this.setState( { temasrelevantes : temasrelevantesUpdated } );
+    
+                console.log(this.state.temasrelevantes);
+            })
+            .catch( error => {
+                console.log(error);
+            } );
+    
+            
+        }
 
 
 
     
     render (){
+        let lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, voluptates!";
+
+        let temasrelevantes = this.state.temasrelevantes.map( temarelevante => {
+            return (
+                <TemaRelevanteList
+                    key={temarelevante.Id}
+                    name={temarelevante.Name}
+                    description={temarelevante.descripcion}
+                    edit={() => this.temarelevanteSelectedHandler(temarelevante.Id)} 
+                    delete={() => this.temarelevanteDeletedHandler(temarelevante.Id)}
+                />
+                
+            );
+        });
         
         return (
             <div>
@@ -53,21 +95,14 @@ class TemaRelevante extends Component {
                 </div>
 
                 <section >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col">
-                            aqui van mis temas relevantes
-
-                            </div>
-                        </div>
-                    </div>
+                    {temasrelevantes}
                 </section>
 
             </div>
         );
     }
 
-    dimensionDeletedHandler = (id) => {
+    temarelevanteDeletedHandler = (id) => {
         console.log(id);
         
         axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
@@ -80,7 +115,7 @@ class TemaRelevante extends Component {
     }
 
 
-    dimensionSelectedHandler = (id) => {
+    temarelevanteSelectedHandler = (id) => {
         console.log(id);
     }
 
