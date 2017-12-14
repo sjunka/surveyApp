@@ -49,7 +49,6 @@ class TemaRelevante extends Component {
 
     
     render (){
-        let lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, voluptates!";
 
         let temasrelevantes = this.state.temasrelevantes.map( temarelevante => {
             return (

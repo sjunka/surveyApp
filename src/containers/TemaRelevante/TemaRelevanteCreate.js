@@ -1,6 +1,11 @@
 //Importar componentes React
 import React from 'react';
 
+//Importar componente Axios
+import axios from '../../axios-orders';
+
+
+
 class TemaRelevante extends React.Component {
     constructor(props){
         super(props)
@@ -11,6 +16,54 @@ class TemaRelevante extends React.Component {
         }
     
     }
+
+    componentDidMount () {
+        
+        axios.get( '/Cobertura' )
+            .then( response => {
+                // console.log("COBERTURA:", response);
+                
+                const coberturasUpdate = [];
+                
+                for (let key in response.data){
+                    coberturasUpdate.push({
+                        ...response.data[key],
+                        id: key
+                    });
+    
+                }
+                this.setState( { coberturas : coberturasUpdate } );
+    
+                console.log(this.state.cobertura);
+            })
+            .catch( error => {
+                console.log(error);
+            } );
+
+
+            axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
+            .then( response => {
+                // console.log("DIMENSION:", response);
+                
+                const dimensionesUpdated = [];
+                
+                for (let key in response.data){
+                    dimensionesUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+
+                }
+                this.setState( { dimensiones: dimensionesUpdated } );
+
+                console.log(this.state.dimensiones);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+    
+            
+        }
     
     
     render (){
@@ -21,18 +74,24 @@ class TemaRelevante extends React.Component {
                 
                 
                 <div className="form-group">
-                    <label className="col-form-label">Nombre:</label>
-                        <input className="form-control"
-                        value={this.state.nombre}
-                        onChange={this.handleNombre}
-                        type="text"/>
+                    <label className="col-form-label" htmlFor="nombre">Nombre:</label>
+                        <input 
+                        type="text"
+                        className="form-control"
+                        placeholder="Nombre Tema Relevante"
+                        name = "nombre" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.nombre} />
                         <small id="namehelp" className="form-text text-muted">Nombre tema relevante</small>
                 </div>    
 
 
                 <div className="form-group">
                     <label className="col-form-label">Dimension:</label>
-                    <select  className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
+                    <select  className="form-control custom-select" 
+                    value={this.state.dimension} 
+                    onChange={this.handleInputChange}
+                    name="dimension">
                         <option value="null">Escoger dimension:</option>
                         <option value="ambiental">Ambiental</option>
                         <option value="social">Social</option>
@@ -40,30 +99,47 @@ class TemaRelevante extends React.Component {
                     </select>
                     <small id="namehelp" className="form-text text-muted">Dimensión</small>
                 </div>
+            
          
 
                 <div className="custom-controls-stacked">
                 <label className="col-form-label">Cobertura:</label>
                     <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
+                        <input 
+                        type="checkbox" 
+                        onChange={this.handleInputChange}
+                        className="custom-control-input"/>
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Externa - Contratista</span>
                     </label>
 
                     <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
+                        <input 
+                        type="checkbox" 
+                        className="custom-control-input"
+                         onChange={this.handleInputChange}
+                        />
+                        
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Interna - Comunidad</span>
                     </label>
 
                     <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
+                        <input 
+                        type="checkbox"
+                        className="custom-control-input"
+                         onChange={this.handleInputChange}
+                        />
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Interna - Recurso humano</span>
                     </label>
 
                     <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
+                        <input 
+                        type="checkbox" 
+                        className="custom-control-input"
+                         onChange={this.handleInputChange}
+                        />
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Externa - Comunidades</span>
                     </label>
@@ -90,20 +166,42 @@ class TemaRelevante extends React.Component {
 
     handleSubmit = (e) => {
         console.log(this.state);
+        const temarelevante = {
+            name : this.state.nombre,
+            categoria : this.state.dimension,
+            // cobertura : this.state.coberturas 
+        }
+
+        console.log(temarelevante);
+        
+        axios.post('/TemaRelevante',temarelevante)
+        .then(response => 
+            this.setState({
+                nombre : '',
+                dimension : '',
+                cobertura : ''
+            })    
+        )
+        .catch(error => console.log(error));
         e.preventDefault();
+        
     }
 
-    handleNombre = (e) => {
-        this.setState ({
-            nombre: e.target.value
-        })
-    }
+    handleInputChange(event) {
+        const target = event.target;
+        
+        const value = target.type === 'select' ? target.checked : target.value;
+        
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
 
-    handleDimension = (e) => {
-        this.setState ({
-            dimension: e.target.value
-        })
-    }
+    
+      }
+   
+
 
 }
 
