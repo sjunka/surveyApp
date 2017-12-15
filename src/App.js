@@ -20,6 +20,9 @@ import Landing  from './components/Landing/Landing';
 
 import Inicio  from './components/Inicio/Inicio';
 
+import Login  from './containers/Login/Login';
+
+
 import Dimension  from './containers/Dimension/Dimension';
 import DimensionCreate  from './containers/Dimension/DimensionCreate';
 
@@ -52,6 +55,9 @@ import Resultado from './containers/Resultado/Resultado';
           <Layout>
             <Switch>
             <Route exact path="/"  component={Landing} />
+            
+            <Route exact path="/login"  component={Login} />
+            
             <Route exact path="/inicio"  component={Inicio} />
 
             <Route exact path="/dimension" component= {Dimension} />

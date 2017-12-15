@@ -93,6 +93,14 @@ class TemaRelevante extends Component {
                     </div>
                 </div>
 
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Temas relevantes</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <section >
                     {temasrelevantes}
                 </section>

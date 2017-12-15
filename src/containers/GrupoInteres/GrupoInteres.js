@@ -119,6 +119,14 @@ componentDidMount () {
                     </div>
                 </div>
 
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Grupos de interes</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <section >
                 {gruposdeinteres}
                 </section>

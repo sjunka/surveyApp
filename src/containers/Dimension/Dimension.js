@@ -95,7 +95,16 @@ class Dimension extends Component {
                     </div>
                 </div>
 
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Dimensiones</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <section >
+               
                 {dimensiones}
                 </section>
 

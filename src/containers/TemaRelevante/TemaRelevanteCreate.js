@@ -11,13 +11,13 @@ class TemaRelevante extends React.Component {
         super(props)
         this.state = {
             nombre : '',
-            dimension : [],
+            dimension : 'ambiental',
             cobertura: []
         }
     
     }
 
-    componentDidMount () {
+    componentWillMount () {
         
         axios.get( '/Cobertura' )
             .then( response => {
@@ -92,7 +92,6 @@ class TemaRelevante extends React.Component {
                     value={this.state.dimension} 
                     onChange={this.handleInputChange}
                     name="dimension">
-                        <option value="null">Escoger dimension:</option>
                         <option value="ambiental">Ambiental</option>
                         <option value="social">Social</option>
                         <option value="economica">Economica</option>
@@ -167,8 +166,10 @@ class TemaRelevante extends React.Component {
     handleSubmit = (e) => {
         console.log(this.state);
         const temarelevante = {
-            name : this.state.nombre,
-            categoria : this.state.dimension,
+            Name : this.state.nombre,
+            Categoria : {
+                Name: this.state.dimension
+            },
             // cobertura : this.state.coberturas 
         }
 

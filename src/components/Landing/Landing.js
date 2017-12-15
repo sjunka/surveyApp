@@ -24,7 +24,7 @@ class Landing extends Component {
                     </p>
 
                     <div className="mx-auto">
-                    <Link className="btn btn-info " to='/inicio'>Ingresar</Link>
+                    <Link className="btn btn-info " to='/login'>Ingresar</Link>
                     </div>
                     
                     </div>

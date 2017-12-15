@@ -118,6 +118,14 @@ componentDidMount () {
                     </div>
                 </div>
 
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Coberturas</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <section >
                 {coberturas}
                 </section>
