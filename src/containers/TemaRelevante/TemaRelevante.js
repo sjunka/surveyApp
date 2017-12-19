@@ -55,7 +55,7 @@ class TemaRelevante extends Component {
                 <TemaRelevanteList
                     key={temarelevante.Id}
                     name={temarelevante.Name}
-                    description={temarelevante.descripcion}
+                    dimension={temarelevante.Categoria.Name}
                     edit={() => this.temarelevanteSelectedHandler(temarelevante.Id)} 
                     delete={() => this.temarelevanteDeletedHandler(temarelevante.Id)}
                 />

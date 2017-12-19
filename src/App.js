@@ -36,6 +36,7 @@ import TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
 import TemaRelevanteCreate  from './containers/TemaRelevante/TemaRelevanteCreate';
 
 import Pregunta  from './containers/Pregunta/Pregunta';
+import PreguntaCreate  from './containers/Pregunta/PreguntaCreate';
 
 import Usuario from './containers/Usuario/Usuario';
 
@@ -73,6 +74,7 @@ import Resultado from './containers/Resultado/Resultado';
             <Route exact path="/grupointeres/new" component= {GrupoInteresCreate} />
 
             <Route exact path="/pregunta" component= {Pregunta} />
+            <Route exact path="/pregunta/new" component= {PreguntaCreate} />
 
             <Route exact path="/usuario" component= {Usuario} />
 

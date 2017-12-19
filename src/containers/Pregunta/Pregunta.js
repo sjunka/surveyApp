@@ -1,191 +1,149 @@
 //Importar componentes React
-import React from 'react';
+import React, { Component } from 'react';
 
-//Importar Axios
-import axios from 'axios';
+//Importar componente Axios
+import axios from '../../axios-orders';
+//import PreguntaList component
+import PreguntaList from '../../components/Pregunta/PreguntaList';
 
 
-class Pregunta extends React.Component {
+
+class Pregunta extends Component {
     constructor(props){
         super(props)
         this.state = {
-            descripcion : '',
-            dimension:'',
-            temarelevante: '',
-            tipo : 'Abierta',
-            grupointeres:''
+            preguntas : []
         }
     
-       
-
-
-
     }
 
-    
-    
+    componentDidMount () {
+        
+        axios.get( '/Pregunta' )
+            .then( response => {
+                console.log("la respuesta del server es:", response);
+                
+                const preguntasUpdated = [];
+                
+                for (let key in response.data){
+                    preguntasUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+
+                }
+                this.setState( { preguntas: preguntasUpdated } );
+
+                console.log(this.state.preguntas);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+
+            
+    }   
+
+
+
     
     render (){
-        return(
-        <div className="container">
-            <h4 className="col-form-label">Pregunta</h4>
-            <form onSubmit={this.handleSubmit}>
 
-
-            <div className="form-group">
-                <label>Descripcion:</label>
-                <div className="">
-                    <textarea 
-                    className="form-control"
-                    value = {this.state.descripcion}
-                    onChange = {this.handleDescripcion}
-                    placeholder="">
-                    </textarea>
-                    <small id="namehelp" className="form-text text-muted">Descripción de pregunta</small>
-                </div>
-            </div>
+        
+            let preguntas = this.state.preguntas.map( pregunta => {
+                return (
+                    <PreguntaList
+                        key={pregunta.Id}
+                        name={pregunta.Name}
+                        description={pregunta.descripcion}
+                        type= {pregunta.TipoPreguntaDesc}
+                        temarelevante={pregunta.TemaRelevante.Name}
+                        dimension={pregunta.TemaRelevante.Categoria}
+                        edit={() => this.preguntaSelectedHandler(pregunta.id)} 
+                        delete={() => this.preguntaDeletedHandler(pregunta.id)}
+                    />
                     
-            <div className="form-group">
-                <label className="col-form-label">Dimension:</label>
-                <select className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
-                    <option value="null">Escoger dimension:</option>
-                    <option value="ambiental">Ambiental</option>
-                    <option value="social">Social</option>
-                    <option value="economica">Economica</option>
-                </select>
-                <small id="namehelp" className="form-text text-muted">Dimensión</small>
-            </div>
+                );
+            });
 
-            <div className="form-group">
-                <label className="col-form-label">Tema Relevante::</label>
-                <select className="form-control custom-select" value={this.state.temarelevante} onChange={this.handleTemaRelevante}>
-                    <option value="null">Escoger Tema Relevante</option>
-                    <option value="tema1">Derechos Humanos</option>
-                    <option value="tema2">Productos limpios </option>
-                    <option value="tema3">Biodiversidad</option>
-                    <option value="tema4">Innovación y tecnología</option>
-                </select>
-                <small id="namehelp" className="form-text text-muted">Tema Relevante</small>
-            </div>
+        
+    
+        
+        return (
+            <div>
+                <div className="container">
+
+                    <div className="row mb-2">
+                        <div className="col align-self-start">
             
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm"
+                            onClick = {this.goBackHandler}
+                            >Volver</button>
 
+                           
+            
+                        </div>
+            
+                        <div className="col align-self-end text-right">
+                        
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm "
+                            onClick = {this.goCreateHandler}
+                            >Crear</button>
+                                
+            
+                        </div>
+                    </div>
+                </div>
 
-            <div className="form-group">
-                <label className="col-form-label">Tipo Pregunta:</label>
-                <select  className="form-control custom-select" value={this.state.tipo} onChange={this.handleTipo}>
-                    <option value="abierta">Abierta</option>
-                    <option value="cerrada">Cerrada</option>
-                </select>
-                <small id="namehelp" className="form-text text-muted">Tipo</small>
-            </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Preguntas</h3>
+                        </div>
+                    </div>
+                </div>
 
-            <div className="custom-controls-stacked">
-                <label className="col-form-label">Grupo de Interes:</label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" defaultChecked/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Todos los grupos de interes</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Accionista e inversionitas</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Clientes</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Contratatistas y sus empleados</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Socios</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Sociedad y comunidad</span>
-                    </label>
-            </div>
-
-            <div className="d-flex justify-content-center">
-            <div className="col-sm-6 text-right">
-                <button type="submit" className="btn btn-success">Guardar</button>
+                <section >
+               
+                {preguntas}
+                </section>
 
             </div>
-            <div className="col-sm-6 text-left">
-                <button type="button" className="btn btn-danger">Cancelar</button>
+        );
+    }
 
-            </div>
-        </div>
-            </form>
-        </div>
-        )
+    preguntaDeletedHandler = (id) => {
+        console.log(id);
+        
+        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        .then(response => {
+            console.log(response);
+        })
+        .catch( error => {
+            console.log(error);
+        } );;
+    }
+
+
+    preguntaSelectedHandler = (id) => {
+        console.log(id);
     }
 
     
 
-//'https://jsonplaceholder.typicode.com/posts'
-
-    handleSubmit = (e) => {
-        console.log(this.state);
-            let url = 'http://190.85.67.146/TEST/MATERIALIDAD/api/Pregunta';
-         //traer preguntas
-         axios.post(url,{
-            descripcion : this.state.descripcion,
-            dimension : this.state.dimension,
-            grupointeres : this.state.grupointeres,
-            temarelevante : this.state.temarelevante,
-            tipo : this.state.tipo
-        })
-        .then( (response) => {
-            console.log(response);  
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-
-        e.preventDefault();
+    goCreateHandler = () => {
+        this.props.history.push('/pregunta/new');
     }
 
-    handleDescripcion = (e) => {
-        this.setState ({
-            descripcion: e.target.value
-        })
+    goBackHandler = () => {
+        this.props.history.goBack();
     }
-
-    handleDimension = (e) =>{
-        this.setState({
-            dimension: e.target.value
-        })
-    }
-
-    handleTemaRelevante = (e) =>{
-        this.setState({
-            temarelevante: e.target.value
-
-        })
-    }
-
-    handleTipo = (e) => {
-        this.setState ({
-            tipo: e.target.value
-        })
-    }
-
+   
 }
+
 
 
 export default Pregunta;

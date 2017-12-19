@@ -80,7 +80,7 @@ class TemaRelevante extends React.Component {
                         className="form-control"
                         placeholder="Nombre Tema Relevante"
                         name = "nombre" 
-                        onChange={this.handleInputChange} 
+                        onChange={this.handleInputChange.bind(this)} 
                         value={this.state.nombre} />
                         <small id="namehelp" className="form-text text-muted">Nombre tema relevante</small>
                 </div>    
@@ -90,7 +90,7 @@ class TemaRelevante extends React.Component {
                     <label className="col-form-label">Dimension:</label>
                     <select  className="form-control custom-select" 
                     value={this.state.dimension} 
-                    onChange={this.handleInputChange}
+                    onChange={this.handleInputChange.bind(this)}
                     name="dimension">
                         <option value="ambiental">Ambiental</option>
                         <option value="social">Social</option>
@@ -106,7 +106,7 @@ class TemaRelevante extends React.Component {
                     <label className="custom-control custom-checkbox">
                         <input 
                         type="checkbox" 
-                        onChange={this.handleInputChange}
+                        onChange={this.handleInputChange.bind(this)}
                         className="custom-control-input"/>
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Externa - Contratista</span>
@@ -116,7 +116,7 @@ class TemaRelevante extends React.Component {
                         <input 
                         type="checkbox" 
                         className="custom-control-input"
-                         onChange={this.handleInputChange}
+                         onChange={this.handleInputChange.bind(this)}
                         />
                         
                         <span className="custom-control-indicator"></span>
@@ -127,7 +127,7 @@ class TemaRelevante extends React.Component {
                         <input 
                         type="checkbox"
                         className="custom-control-input"
-                         onChange={this.handleInputChange}
+                         onChange={this.handleInputChange.bind(this)}
                         />
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Interna - Recurso humano</span>
@@ -137,7 +137,7 @@ class TemaRelevante extends React.Component {
                         <input 
                         type="checkbox" 
                         className="custom-control-input"
-                         onChange={this.handleInputChange}
+                         onChange={this.handleInputChange.bind(this)}
                         />
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">Externa - Comunidades</span>
