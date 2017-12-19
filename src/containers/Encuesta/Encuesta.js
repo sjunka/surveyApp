@@ -1,111 +1,148 @@
 //Importar componentes React
-import React from 'react';
+import React, { Component } from 'react';
 
-//Importar componentes AsignarPregunta
-import EncuestaPreguntas from './EncuestaPreguntas.js';
+//Importar componente Axios
+import axios from '../../axios-orders';
+//import PreguntaList component
+import EncuestaList from '../../components/Encuesta/EncuestaList';
 
-class Encuesta extends React.Component {
+
+
+class Encuesta extends Component {
     constructor(props){
         super(props)
         this.state = {
-            nombre : '',
-            descripcion : '',
-            periodoinicio: '',
-            periodofin: ''
+            encuestas : []
         }
     
     }
-    
+
+    componentDidMount () {
+        
+        axios.get( '/Encuesta' )
+            .then( response => {
+                console.log("la respuesta del server es:", response);
+                
+                const encuestasUpdated = [];
+                
+                for (let key in response.data){
+                    encuestasUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+
+                }
+                this.setState( { encuestas: encuestasUpdated } );
+
+                console.log(this.state.encuestas);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+
+            
+    }   
+
+
+
     
     render (){
-        return(
-        <div className="container">
+
+        
+            let encuestas = this.state.encuestas.map( encuesta => {
+                return (
+                    <EncuestaList
+                        key={encuesta.Id}
+                        name={encuesta.Name}
+                        description={encuesta.descripcion}
+                        inicialdate={encuesta.FechaInicio}
+                        enddate={encuesta.FechaFinal}
+                        edit={() => this.encuestaSelectedHandler(encuesta.id)} 
+                        delete={() => this.encuestaDeletedHandler(encuesta.id)}
+                    />
+                    
+                );
+            });
+
+        
+    
+        
+        return (
+            <div>
+                <div className="container">
+
+                    <div className="row mb-2">
+                        <div className="col align-self-start">
             
-            <h4 className="col-form-label">Encuesta</h4>
-            <form onSubmit={this.handleSubmit}>
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm"
+                            onClick = {this.goBackHandler}
+                            >Volver</button>
 
-                <div className="form-group">
-                    <label className="col-form-label">Nombre:</label>
-                        <div className="">
-                            <input className="form-control"
-                            value={this.state.nombre}
-                            onChange={this.handleNombre}
-                            type="text"/>
-                            <small id="namehelp" className="form-text text-muted">Nombre de  la encuesta</small>
+                           
+            
                         </div>
-                </div>
-
-                <div className="form-group">
-                        <label className="col-form-label">Descripcion:</label>
-                        <div className="">
-                            <textarea 
-                            className="form-control" 
-                            value = {this.state.descripcion}
-                            onChange = {this.handleDescripcion}>
-                            </textarea>
-                           <small id="namehelp" className="form-text text-muted">Describle la encuesta</small>
+            
+                        <div className="col align-self-end text-right">
+                        
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm "
+                            onClick = {this.goCreateHandler}
+                            >Crear</button>
+                                
+            
                         </div>
-                </div>
-
-                <div className="form-group">
-                        <label className="col-form-label">Fecha Inicio:</label>
-                        <input type="date" name="periodoinicio"
-                            className="form-control" 
-                            value = {this.state.periodoinicio}
-                            onChange = {this.handlePeriodoInicio}/>
-                </div>
-
-                <div className="form-group">
-                        <label className="col-form-label">Fecha Final:</label>
-                        <input type="date" name="periodofin"
-                            className="form-control" 
-                            value = {this.state.periodofin}
-                            onChange = {this.handlePeriodoFin}/>
-                </div>
-
-                <div className="d-flex justify-content-center">
-                    <div className="col-sm-6 text-center">
-                        <button type="submit" className="btn btn-success">Crear Encuesta</button>
                     </div>
-
                 </div>
 
-            </form>
-            <EncuestaPreguntas/>
-        </div>
-        )
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Encuestas</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <section >
+               
+                {encuestas}
+                </section>
+
+            </div>
+        );
     }
 
-    handleSubmit = (e) => {
-        console.log(this.state);
-        e.preventDefault();
-    }
-
-    handleNombre = (e) => {
-        this.setState ({
-            nombre: e.target.value
+    encuestaDeletedHandler = (id) => {
+        console.log(id);
+        
+        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        .then(response => {
+            console.log(response);
         })
+        .catch( error => {
+            console.log(error);
+        } );;
     }
 
-    handleDescripcion = (e) => {
-        this.setState ({
-            descripcion: e.target.value
-        })
+
+    encuestaSelectedHandler = (id) => {
+        console.log(id);
     }
 
-    handlePeriodoInicio = (e) =>{
-        this.setState({
-            periodoinicio: e.target.value 
-        })
+    
+
+    goCreateHandler = () => {
+        this.props.history.push('/encuesta/new');
     }
 
-    handlePeriodoFin = (e) => {
-        this.setState({
-            periodofin: e.target.value
-        })
+    goBackHandler = () => {
+        this.props.history.goBack();
     }
-
+   
 }
+
 
 
 export default Encuesta;
