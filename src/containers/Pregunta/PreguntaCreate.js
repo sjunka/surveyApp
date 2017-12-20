@@ -60,10 +60,10 @@ class Pregunta extends React.Component {
                 <label className="col-form-label">Tema Relevante::</label>
                 <select className="form-control custom-select" value={this.state.temarelevante} onChange={this.handleTemaRelevante}>
                     <option value="null">Escoger Tema Relevante</option>
-                    <option value="tema1">Derechos Humanos</option>
-                    <option value="tema2">Productos limpios </option>
-                    <option value="tema3">Biodiversidad</option>
-                    <option value="tema4">Innovación y tecnología</option>
+                    <option value="Derechos Humanos">Derechos Humanos</option>
+                    <option value="Productos limpios">Productos limpios </option>
+                    <option value="Biodiversidad">Biodiversidad</option>
+                    <option value="Innovación y tecnología">Innovación y tecnología</option>
                 </select>
                 <small id="namehelp" className="form-text text-muted">Tema Relevante</small>
             </div>
@@ -136,18 +136,20 @@ class Pregunta extends React.Component {
 
     
 
-//'https://jsonplaceholder.typicode.com/posts'
 
     handleSubmit = (e) => {
         console.log(this.state);
             let url = 'http://190.85.67.146/TEST/MATERIALIDAD/api/Pregunta';
          //traer preguntas
-         axios.post(url,{
-            descripcion : this.state.descripcion,
-            dimension : this.state.dimension,
-            grupointeres : this.state.grupointeres,
-            temarelevante : this.state.temarelevante,
-            tipo : this.state.tipo
+         axios.post(url, {
+             Name: this.state.descripcion,
+             TipoPregunta: this.state.tipo,
+             TemaRelevante: {
+                 Name: this.state.temarelevante,
+                 Categoria:{
+                     Name:this.state.dimension
+                 }
+             }
         })
         .then( (response) => {
             console.log(response);  

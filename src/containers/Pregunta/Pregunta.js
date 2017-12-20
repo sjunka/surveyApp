@@ -17,6 +17,10 @@ class Pregunta extends Component {
     
     }
 
+  
+
+
+
     componentDidMount () {
         
         axios.get( '/Pregunta' )
@@ -32,7 +36,10 @@ class Pregunta extends Component {
                     });
 
                 }
-                this.setState( { preguntas: preguntasUpdated } );
+
+                console.log(preguntasUpdated);
+                
+            //    this.setState( { preguntas: preguntasUpdated } );
 
                 console.log(this.state.preguntas);
             })
