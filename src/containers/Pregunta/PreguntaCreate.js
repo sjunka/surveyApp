@@ -4,23 +4,62 @@ import React from 'react';
 //Importar Axios
 import axios from 'axios';
 
+//Importar Checkbox
+import Checkbox from '../../components/UI/CheckBox/Checkbox';
+
+
+
+const items = [
+    'Todos los grupos de interes',
+    'Accionista e inversionitas',
+    'Clientes',
+    'Contratatistas y sus empleados',
+    'Socios',
+    'Sociedad y comunidad',
+  ];
+
 
 class Pregunta extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             descripcion : '',
-            dimension:'',
-            temarelevante: '',
-            tipo : 'Abierta',
-            grupointeres:''
+            temarelevante: 1,
+            tipo : 1,
+            grupointeres:[]
         }
-    
+    }
+
+        componentWillMount = () => {
+            this.selectedCheckboxes = new Set();
+          }
+        
+          toggleCheckbox = label => {
+            if (this.selectedCheckboxes.has(label)) {
+              this.selectedCheckboxes.delete(label);
+            } else {
+              this.selectedCheckboxes.add(label);
+            }
+          }
+        
+          
+        
+          createCheckbox = label => (
+            <Checkbox
+              label={label}
+              handleCheckboxChange={this.toggleCheckbox}
+              key={label}
+            />
+          )
+        
+          createCheckboxes = () => (
+            items.map(this.createCheckbox)
+          )
        
 
 
 
-    }
+    
 
     
     
@@ -45,25 +84,14 @@ class Pregunta extends React.Component {
                 </div>
             </div>
                     
-            <div className="form-group">
-                <label className="col-form-label">Dimension:</label>
-                <select className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
-                    <option value="null">Escoger dimension:</option>
-                    <option value="ambiental">Ambiental</option>
-                    <option value="social">Social</option>
-                    <option value="economica">Economica</option>
-                </select>
-                <small id="namehelp" className="form-text text-muted">Dimensión</small>
-            </div>
 
             <div className="form-group">
                 <label className="col-form-label">Tema Relevante::</label>
                 <select className="form-control custom-select" value={this.state.temarelevante} onChange={this.handleTemaRelevante}>
-                    <option value="null">Escoger Tema Relevante</option>
-                    <option value="Derechos Humanos">Derechos Humanos</option>
-                    <option value="Productos limpios">Productos limpios </option>
-                    <option value="Biodiversidad">Biodiversidad</option>
-                    <option value="Innovación y tecnología">Innovación y tecnología</option>
+                    <option value="1">Derechos Humanos</option>
+                    <option value="2">Productos limpios </option>
+                    <option value="3">Biodiversidad</option>
+                    <option value="4">Innovación y tecnología</option>
                 </select>
                 <small id="namehelp" className="form-text text-muted">Tema Relevante</small>
             </div>
@@ -73,8 +101,8 @@ class Pregunta extends React.Component {
             <div className="form-group">
                 <label className="col-form-label">Tipo Pregunta:</label>
                 <select  className="form-control custom-select" value={this.state.tipo} onChange={this.handleTipo}>
-                    <option value="abierta">Abierta</option>
-                    <option value="cerrada">Cerrada</option>
+                    <option value="1">Abierta</option>
+                    <option value="2">Cerrada</option>
                 </select>
                 <small id="namehelp" className="form-text text-muted">Tipo</small>
             </div>
@@ -82,42 +110,11 @@ class Pregunta extends React.Component {
             <div className="custom-controls-stacked">
                 <label className="col-form-label">Grupo de Interes:</label>
 
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" defaultChecked/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Todos los grupos de interes</span>
-                    </label>
+                {this.createCheckboxes()}
 
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Accionista e inversionitas</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Clientes</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Contratatistas y sus empleados</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Socios</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Sociedad y comunidad</span>
-                    </label>
             </div>
+
+
 
             <div className="d-flex justify-content-center">
             <div className="col-sm-6 text-right">
@@ -138,24 +135,40 @@ class Pregunta extends React.Component {
 
 
     handleSubmit = (e) => {
-        console.log(this.state);
-            let url = 'http://190.85.67.146/TEST/MATERIALIDAD/api/Pregunta';
-         //traer preguntas
-         axios.post(url, {
-             Name: this.state.descripcion,
-             TipoPregunta: this.state.tipo,
-             TemaRelevante: {
-                 Name: this.state.temarelevante,
-                 Categoria:{
-                     Name:this.state.dimension
-                 }
-             }
+
+        let gruposInteresSeleccionados = [];
+
+        for (const checkbox of this.selectedCheckboxes) {
+            gruposInteresSeleccionados.push(checkbox);
+            console.log(gruposInteresSeleccionados);
+          }
+
+        this.setState({
+            grupointeres: gruposInteresSeleccionados
         })
+
+        console.log(this.state.grupointeres);
+
+        let preguntaPost = {
+            "TipoPregunta": this.state.tipo,
+                "TemaRelevante": {
+                    "Id": this.state.temarelevante
+                },
+                "GruposInteres": [
+                    this.state.grupointeres
+                ],
+                "Name": this.state.descripcion
+        }
+
+            let url = 'http://190.85.67.146/TEST/MATERIALIDAD/api/Pregunta/CreateDeepGin';
+
+         //traer preguntas
+         axios.post(url,preguntaPost )
         .then( (response) => {
             console.log(response);  
-        })
+        })  
         .catch(function (error) {
-          console.log(error);
+          console.log(error, preguntaPost);
         });
 
 

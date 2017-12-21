@@ -27,20 +27,36 @@ class Pregunta extends Component {
             .then( response => {
                 console.log("la respuesta del server es:", response);
                 
-                const preguntasUpdated = [];
+                const transformedPreguntas = Object.keys(response.data)
+                        .map(preguntaKey => {
+                            return [...Array(response.data[preguntaKey])].map((_, i)=>{
+                                <PreguntaList
+                                key={_.Id}
+                                name={_.Name}
+                                description={_.descripcion}
+                                type= {_.TipoPreguntaDesc}
+                                temarelevante={_.TemaRelevante.Name}
+                                dimension={_.TemaRelevante.Categoria}
+                            />
+                            });
+                        });
+
+
+                // const preguntasUpdated = [];
                 
-                for (let key in response.data){
-                    preguntasUpdated.push({
-                        ...response.data[key],
-                        id: key
-                    });
+                // for (let key in response.data){
+                //     preguntasUpdated.push({
+                //         ...response.data[key],
+                //         id: key
+                //     });
 
-                }
+                // }
 
-                console.log(preguntasUpdated);
+                // console.log(preguntasUpdated);
                 
             //    this.setState( { preguntas: preguntasUpdated } );
-
+            this.setState( { preguntas: transformedPreguntas } );
+                console.log(transformedPreguntas);
                 console.log(this.state.preguntas);
             })
             .catch( error => {
@@ -58,6 +74,7 @@ class Pregunta extends Component {
         
             let preguntas = this.state.preguntas.map( pregunta => {
                 return (
+                    
                     <PreguntaList
                         key={pregunta.Id}
                         name={pregunta.Name}
