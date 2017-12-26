@@ -41,7 +41,7 @@ class Pregunta extends Component {
                 
                this.setState( {
                     preguntas: preguntasUpdated
-                 });
+                 } );
 
                 console.log(this.state.preguntas);
             })
@@ -64,10 +64,16 @@ class Pregunta extends Component {
                     <PreguntaList
                         key={pregunta.Id}
                         name={pregunta.Name}
-                        description={pregunta.descripcion}
-                        type= {pregunta.TipoPreguntaDesc}
-                        temarelevante={pregunta.TemaRelevante.Name}
-                        dimension={pregunta.TemaRelevante.Categoria}
+
+                        tipoPregunta={pregunta.TipoPreguntaDesc}
+                        
+                        temarelevante_id={pregunta.TemaRelevante.Id}
+                        temarelevante_name={pregunta.TemaRelevante.Name}
+                        
+                        categoria={pregunta.TemaRelevante.Categoria.Name}
+                        coberturas = {pregunta.TemaRelevante.Coberturas} 
+                        
+                        
                         edit={() => this.preguntaSelectedHandler(pregunta.id)} 
                         delete={() => this.preguntaDeletedHandler(pregunta.id)}
                     />

@@ -12,9 +12,9 @@ const PreguntaList = (props) => (
                     <div className="card mb-2">
                         <div className="card-body">
                             <h5 className="card-title">{props.name}</h5>
-                             <p style={pstyle}><strong>Tipo:</strong> {props.type}</p>
-                             <p style={pstyle}><strong>Tema Relevante:</strong> {props.temarelevante}</p>
-                             <p style={pstyle}><strong>Dimension:</strong> {props.dimension}</p>
+                             <p style={pstyle}><strong>Tema Relevante:</strong> {props.temarelevante_name}</p>
+                             <p style={pstyle}><strong>Dimension:</strong> {props.categoria}</p>
+                             <p style={pstyle}><strong>Tipo:</strong> {props.tipoPregunta}</p>
                              
                         </div>
 
