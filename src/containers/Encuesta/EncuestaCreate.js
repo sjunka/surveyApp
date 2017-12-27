@@ -36,7 +36,7 @@ class Encuesta extends React.Component {
                 </div>
 
                 <div className="form-group">
-                        <label className="col-form-label">Descripcion:</label>
+                        <label className="col-form-label">Descripción:</label>
                         <div className="">
                             <textarea 
                             className="form-control" 

@@ -11,13 +11,13 @@ class TemaRelevante extends React.Component {
         super(props)
         this.state = {
             nombre : '',
-            dimension : 'ambiental',
-            cobertura: []
+            dimension : null,
+            cobertura: null
         }
     
     }
 
-    componentWillMount () {
+    componentDidMount () {
         
         axios.get( '/Cobertura' )
             .then( response => {
@@ -32,9 +32,8 @@ class TemaRelevante extends React.Component {
                     });
     
                 }
-                this.setState( { coberturas : coberturasUpdate } );
+                this.setState( { cobertura : coberturasUpdate } );
     
-                console.log(this.state.cobertura);
             })
             .catch( error => {
                 console.log(error);
@@ -54,9 +53,8 @@ class TemaRelevante extends React.Component {
                     });
 
                 }
-                this.setState( { dimensiones: dimensionesUpdated } );
+                this.setState( { dimension: dimensionesUpdated } );
 
-                console.log(this.state.dimensiones);
             })
             .catch( error => {
                 console.log(error);
@@ -67,6 +65,30 @@ class TemaRelevante extends React.Component {
     
     
     render (){
+        console.log('este es el estado inicia: ', this.state);
+
+        console.log(this.state.dimension);
+
+        let options;
+
+        if (this.state.dimension){
+             options  = this.state.dimension.map((dimen)=>{
+                return (
+                    <option key="dimen.id" value="id">{dimen.nombre}</option>
+                    
+                )
+            })
+            console.log(options);
+        } else {
+            return (
+                <p>Error en dimension</p>
+            )
+        }
+
+        
+       
+
+
         return(
         <div className="container">
             <h4 className="col-form-label">Tema Relevante</h4>
@@ -87,14 +109,16 @@ class TemaRelevante extends React.Component {
 
 
                 <div className="form-group">
-                    <label className="col-form-label">Dimension:</label>
+                    <label className="col-form-label">Dimensión:</label>
                     <select  className="form-control custom-select" 
                     value={this.state.dimension} 
                     onChange={this.handleInputChange.bind(this)}
                     name="dimension">
-                        <option value="ambiental">Ambiental</option>
+                        {options}
+                  
+                        {/* <option value="ambiental">Ambiental</option>
                         <option value="social">Social</option>
-                        <option value="economica">Economica</option>
+                        <option value="economica">Economica</option> */}
                     </select>
                     <small id="namehelp" className="form-text text-muted">Dimensión</small>
                 </div>

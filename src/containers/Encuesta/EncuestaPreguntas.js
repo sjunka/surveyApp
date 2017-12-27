@@ -20,7 +20,7 @@ class EncuestaPreguntas extends React.Component {
             <form onSubmit={this.handleSubmit}>
 
             <div className="form-group">
-                <label className="col-form-label">Dimension:</label>
+                <label className="col-form-label">Dimensión:</label>
                 <select className="form-control custom-select" value={this.state.dimension} onChange={this.handleDimension}>
                     
                     <option value="ambiental">Ambiental</option>
@@ -38,7 +38,7 @@ class EncuestaPreguntas extends React.Component {
                     <tr>
                     <th scope="col">Tema relevante</th>
                     <th scope="col">Pregunta</th>
-                    <th scope="col">Grupo interes</th>
+                    <th scope="col">Grupo interés</th>
                     <th scope="col">Estado</th>
                     </tr>
                 </thead>

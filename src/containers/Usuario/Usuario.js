@@ -28,7 +28,7 @@ class Usuario extends React.Component {
             <div className="form-group">
                 <label className="col-form-label">Tipo de documento:</label>
                 <select  className="form-control custom-select" value={this.state.tipodococumento} onChange={this.handleTipoDococumento}>
-                    <option value="cc">Cedula</option>
+                    <option value="cc">Cédula</option>
                     <option value="pasaporte">Pasaporte</option>
                 </select>
             </div>
@@ -70,7 +70,7 @@ class Usuario extends React.Component {
 
 
             <div className="form-group">
-                <label className="col-form-label">Correo Electronico:</label>
+                <label className="col-form-label">Correo Electrónico:</label>
                     <div className="">
                         <input className="form-control"
                         value={this.state.email}
@@ -80,7 +80,7 @@ class Usuario extends React.Component {
             </div>
                
             <div className="form-group">
-                <label className="col-form-label">Numero de contacto:</label>
+                <label className="col-form-label">Número de contacto:</label>
                     <div className="">
                         <input className="form-control"
                         value={this.state.numerocontacto}
@@ -90,7 +90,7 @@ class Usuario extends React.Component {
             </div>
 
             <div className="form-group">
-                <label className="col-form-label">Genero:</label>
+                <label className="col-form-label">Género:</label>
                 <select  className="form-control custom-select" value={this.state.genero} onChange={this.handleGenero}>
                     <option value="masculino">Masculino</option>
                     <option value="femenino">Femenino</option>

@@ -72,7 +72,7 @@ class Pregunta extends React.Component {
 
 
             <div className="form-group">
-                <label>Descripcion:</label>
+                <label>Descripción:</label>
                 <div className="">
                     <textarea 
                     className="form-control"
@@ -108,7 +108,7 @@ class Pregunta extends React.Component {
             </div>
 
             <div className="custom-controls-stacked">
-                <label className="col-form-label">Grupo de Interes:</label>
+                <label className="col-form-label">Grupo de Interés:</label>
 
                 {this.createCheckboxes()}
 

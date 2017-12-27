@@ -41,7 +41,7 @@ class DimensionCreate extends Component {
 
 
                             <div className="form-group">
-                                <label htmlFor="descripcion">Descripcion</label>
+                                <label htmlFor="descripcion">Descripción</label>
                                 <textarea 
                                 className="form-control" 
                                 rows="3"

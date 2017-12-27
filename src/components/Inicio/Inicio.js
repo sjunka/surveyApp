@@ -46,7 +46,7 @@ class Inicio extends Component {
                         <div className="col-sm-6">
                             <div className="card mb-2">
                                 <div className="card-body">
-                                <h4 className="card-title">Grupo de interes</h4>
+                                <h4 className="card-title">Grupo de interés</h4>
                                 <p className="card-text">
                                 Menu para crear o editar Grupo de interes.
                                 </p>

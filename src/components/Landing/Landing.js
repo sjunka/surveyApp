@@ -17,10 +17,10 @@ class Landing extends Component {
                 <header id="showcase" className="container mx-auto">
                 <div className="row">
                     <div className="col text-center">
-                    <h1>Bienvenido al modulo de mejora continua</h1>
+                    <h1>Bienvenido al módulo de mejora continua</h1>
                     <p>
-                        Este modulo es una herramienta tecnologica que facilita mediante el apoyo
-                        sistemico la creación de preguntas relacionadas al modelo GRI-4. 
+                        Esté modulo es una herramienta tecnológica que facilita mediante el apoyo
+                        sistémico la creación de preguntas relacionadas al modelo GRI-4. 
                     </p>
 
                     <div className="mx-auto">
