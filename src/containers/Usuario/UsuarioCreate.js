@@ -1,6 +1,11 @@
 //Importar componentes React
 import React from 'react';
 
+//Importar componente Axios
+import axios from '../../axios-orders';
+
+
+
 class Usuario extends React.Component {
     constructor(props){
         super(props)
@@ -12,6 +17,8 @@ class Usuario extends React.Component {
             email: '',
             numerocontacto:'',
             genero: 1,
+            rangoedad:1,
+            nombreEmpresa: '',
             escolaridad: 2,
             latitud: 0.0,
             longitud: 0.0
@@ -80,6 +87,7 @@ class Usuario extends React.Component {
                         <input className="form-control"
                         value={this.state.email}
                         onChange={this.handleEmail}
+                        placeholder="ejemplo@ejemplo.com"
                         type="email"/>
                     </div>
             </div>
@@ -116,7 +124,8 @@ class Usuario extends React.Component {
 
             <div className="form-group">
                 <label className="col-form-label">Escolaridad:</label>
-                <select  className="form-control custom-select" value={this.state.escolaridad} onChange={this.handleEscolaridad}>
+                <select  className="form-control custom-select" value={this.state.escolaridad} 
+                onChange={this.handleEscolaridad}>
                     <option value="1">Sin escolaridad</option>
                     <option value="2">Primaria</option>
                     <option value="3">Secundaria</option>
@@ -127,6 +136,15 @@ class Usuario extends React.Component {
                 </select>
             </div>
 
+            <div className="form-group">
+                <label className="col-form-label">Empresa:</label>
+                    <div className="">
+                        <input className="form-control"
+                        value={this.state.nombreEmpresa}
+                        onChange={this.handleNombreEmpresa}
+                        type="text"/>
+                    </div>
+            </div>
             
             
             <div className="d-flex justify-content-center">
@@ -139,6 +157,7 @@ class Usuario extends React.Component {
                 </div>
             </div>
             
+
             
 
             </form>
@@ -147,8 +166,44 @@ class Usuario extends React.Component {
     }
 
     handleSubmit = (e) => {
-        console.log(this.state);
+        //console.log(this.state);
+        const usuario = {
+            TipoDocumento: this.state.tipodococumento,
+
+            NumeroDocumento: this.state.documento,
+
+            Nombre: this.state.nombres,
+
+            Apellido: this.state.apellidos,
+
+            EMail: this.state.email,
+
+            NumeroCelular: this.state.numerocontacto,
+
+            Genero: this.state.genero,
+
+            Edad: this.state.rangoedad,
+
+            NombreEmpresa: this.state.nombreEmpresa,
+
+            Latitud: this.state.latitud,
+
+            Longitud: this.state.longitud
+            }
+
+        console.log(usuario);
+        
+        axios.post('/UsuarioEncuesta',usuario)
+        .then(response => 
+            this.setState({
+                nombre : '',
+                dimension : '',
+                cobertura : ''
+            })    
+        )
+        .catch(error => console.log(error));
         e.preventDefault();
+
     }
 
     handleTipoDococumento = (e) => {
@@ -202,6 +257,12 @@ class Usuario extends React.Component {
     handleEscolaridad = (e) => {
         this.setState({
             escolaridad: e.target.value
+        })
+    }
+
+    handleNombreEmpresa = (e) => {
+        this.setState({
+            nombreEmpresa: e.target.value
         })
     }
 }

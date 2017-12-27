@@ -14,9 +14,9 @@ const UsuarioList = (props) => (
                             <h5 className="card-title">{props.nombre} {props.apellido}</h5>
                              <p style={pstyle}><strong>Tipo Documento:</strong> {props.tipoDocumento}</p>
                              <p style={pstyle}><strong>Email:</strong> {props.email}</p>
-                             <p style={pstyle}><strong>Numero Celular:</strong> {props.numeroCelular}</p>
+                             <p style={pstyle}><strong>Número Celular:</strong> {props.numeroCelular}</p>
                              <p style={pstyle}><strong>Empresa:</strong> {props.empresa}</p>
-                             <p style={pstyle}><strong>Grupo Interes:</strong> {props.grupoInteres}</p>
+                             <p style={pstyle}><strong>Grupo Interés:</strong> {props.grupoInteres}</p>
                              
                              
                         </div>
