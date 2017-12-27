@@ -5,14 +5,16 @@ class Usuario extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            tipodococumento : 'cedula',
+            tipodococumento : 1,
             documento: '',
             nombres : '',
             apellidos: '',
             email: '',
             numerocontacto:'',
-            genero: 'Masculino',
-            escolaridad: 'Sin escolaridad'
+            genero: 1,
+            escolaridad: 2,
+            latitud: 0.0,
+            longitud: 0.0
         }
     
     }
@@ -21,15 +23,17 @@ class Usuario extends React.Component {
     render (){
         return(
         <div className="container">
-            <h4 className="col-form-label">Registro</h4>
+            <h4 className="col-form-label">Registro de Usuario</h4>
             <form onSubmit={this.handleSubmit}>
 
 
             <div className="form-group">
                 <label className="col-form-label">Tipo de documento:</label>
-                <select  className="form-control custom-select" value={this.state.tipodococumento} onChange={this.handleTipoDococumento}>
-                    <option value="cc">Cédula</option>
-                    <option value="pasaporte">Pasaporte</option>
+                <select  className="form-control custom-select" 
+                value={this.state.tipodococumento} 
+                onChange={this.handleTipoDococumento}>
+                    <option value="1">Cédula</option>
+                    <option value="2">Pasaporte</option>
                 </select>
             </div>
 
@@ -38,12 +42,12 @@ class Usuario extends React.Component {
                 <label className="col-form-label">Documento:</label>
 
                 <div className="">
-                        <input className="form-control"
-                        value={this.state.documento}
-                        onChange={this.handleDococumento}
-                        placeholder="123456789 sin espacios o puntos"
-                        type="number"/>
-                    </div>
+                    <input className="form-control"
+                    value={this.state.documento}
+                    onChange={this.handleDococumento}
+                    placeholder="123456789 sin espacios o puntos"
+                    type="number"/>
+                </div>
 
             </div>
     
@@ -81,11 +85,12 @@ class Usuario extends React.Component {
             </div>
                
             <div className="form-group">
-                <label className="col-form-label">Número de contacto:</label>
+                <label className="col-form-label">Número celular:</label>
                     <div className="">
                         <input className="form-control"
                         value={this.state.numerocontacto}
                         onChange={this.handleNumeroContacto}
+                        placeholder= "Sin espacios o guiones"
                         type="tel"/>
                     </div>
             </div>
@@ -93,32 +98,32 @@ class Usuario extends React.Component {
             <div className="form-group">
                 <label className="col-form-label">Género:</label>
                 <select  className="form-control custom-select" value={this.state.genero} onChange={this.handleGenero}>
-                    <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
-                    <option value="otro">Otro</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
+                    <option value="3">Otro</option>
                 </select>
             </div>
 
             <div className="form-group">
                 <label className="col-form-label">Rango edad:</label>
                 <select  className="form-control custom-select" value={this.state.rangoedad} onChange={this.handleRangoEdad}>
-                    <option value="<25">Menor de 25</option>
-                    <option value=">26<=35">Entre 26 y 35</option>
-                    <option value="<35>=45">Entre 36 y 45</option>
-                    <option value=">46">Mayor de 46</option>
+                    <option value="1">Menor de 25</option>
+                    <option value="2">Entre 26 y 35</option>
+                    <option value="3">Entre 36 y 45</option>
+                    <option value="4">Mayor de 46</option>
                 </select>
             </div>
 
             <div className="form-group">
                 <label className="col-form-label">Escolaridad:</label>
                 <select  className="form-control custom-select" value={this.state.escolaridad} onChange={this.handleEscolaridad}>
-                    <option value="Sin escolaridad">Sin escolaridad</option>
-                    <option value="primaria">Primaria</option>
-                    <option value="secundaria">Secundaria</option>
-                    <option value="profesional">Profesional</option>
-                    <option value="especialización">Especialización</option>
-                    <option value="maestria">Maestria</option>
-                    <option value=">doctorado">Doctorado</option>
+                    <option value="1">Sin escolaridad</option>
+                    <option value="2">Primaria</option>
+                    <option value="3">Secundaria</option>
+                    <option value="4">Profesional</option>
+                    <option value="5">Especialización</option>
+                    <option value="6">Maestria</option>
+                    <option value="7">Doctorado</option>
                 </select>
             </div>
 

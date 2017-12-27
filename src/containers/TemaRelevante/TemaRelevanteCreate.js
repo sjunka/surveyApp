@@ -67,7 +67,7 @@ class TemaRelevante extends React.Component {
     
     render (){
 
-        console.log(this.state.cobertura);
+        //console.log(this.state.cobertura);
         let checkboxes = null;
 
         if (this.state.cobertura === !null){
@@ -75,7 +75,8 @@ class TemaRelevante extends React.Component {
             checkboxes = this.state.cobertura.map((cob => {
                 return (
                     <Checkbox
-                    name = {cob.Name}
+                        name = {cob.Name}
+                        
                         label = {cob.Name}
                         key = {cob.Id}
                         value = {cob.Name}
@@ -163,9 +164,14 @@ class TemaRelevante extends React.Component {
             Name : this.state.nombre,
             Categoria : {
                 Name: this.state.dimension
+
             },
-            // cobertura : this.state.coberturas 
-        }
+            Cobertura : [
+                {
+                    Id: this.state.cobertura.Id, 
+                }
+            ]
+            }
 
         console.log(temarelevante);
         
