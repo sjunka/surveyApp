@@ -1,50 +1,32 @@
 import React, { Component } from 'react';
 
-class Checkbox extends Component {
-  state = {
-    isChecked: false,
-  }
-
-  toggleCheckboxChange = () => {
-    const { handleCheckboxChange, label } = this.props;
-
-    this.setState(({ isChecked }) => (
-      {
-        isChecked: !isChecked,
-      }
-    ));
-
-    handleCheckboxChange(label);
-  }
-
-  render() {
-    const { label } = this.props;
-    const { isChecked } = this.state;
-
+var CheckboxInput = React.createClass({
+  getInitialState: function () {
+    return {
+        checked: this.props.checked || false
+     };
+  },
+  render: function () {
     return (
-      <div className="checkbox">
-
-
-      <label className="custom-control custom-checkbox">
-          <input 
-          type="checkbox"
-          className="custom-control-input" 
-          
-          value={label}
-          checked={isChecked}
-          onChange={this.toggleCheckboxChange}
-
-
-          />
-          <span className="custom-control-indicator"></span>
-          <span className="custom-control-description">{label}</span>
+        <label>
+            <input type="checkbox"
+              name={this.props.name}
+              checked={this.state.checked}
+              onClick={this.handleClick}
+              value={this.props.value} />
+              {this.props.label}
       </label>
-
-      </div>
     );
+  },
+  handleClick: function(e) {
+      this.setState({checked: e.target.checked});
   }
-}
+});
+
+
+var question = { label: "Apples", name: "q1", value: "apples" };
 
 
 
-export default Checkbox;
+
+export default CheckboxInput;

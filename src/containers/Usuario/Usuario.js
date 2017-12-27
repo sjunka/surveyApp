@@ -1,204 +1,172 @@
 //Importar componentes React
-import React from 'react';
+import React, { Component } from 'react';
 
-class Usuario extends React.Component {
+//Importar componente Axios
+import axios from '../../axios-orders';
+
+//import PreguntaList component
+import UsuarioList from '../../components/Usuario/UsuarioList';
+
+
+
+class Usuario extends Component {
     constructor(props){
         super(props)
         this.state = {
-            tipodococumento : 'cedula',
-            documento: '',
-            nombres : '',
-            apellidos: '',
-            email: '',
-            numerocontacto:'',
-            genero: 'Masculino',
-            escolaridad: 'Sin escolaridad'
+            usuarios : []
         }
     
     }
-    
+
+  
+
+
+
+    componentDidMount () {
+        
+        axios.get( '/UsuarioEncuesta' )
+            .then( response => {
+                console.log("la respuesta del server es:", response);
+
+                const usuariosUpdated = [];
+                
+                for (let key in response.data){
+                    usuariosUpdated.push({
+                        ...response.data[key],
+                        id: key
+                    });
+
+                }
+
+                
+               this.setState( {
+                    usuarios: usuariosUpdated
+                 } );
+
+                console.log(this.state.usuarios);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+
+            
+    }   
+
+
+
     
     render (){
-        return(
-        <div className="container">
-            <h4 className="col-form-label">Registro</h4>
-            <form onSubmit={this.handleSubmit}>
 
+        
+            let usuarios = this.state.usuarios.map( usuario => {
+                return (
+                    
+                    <UsuarioList
+                        key={usuario.Id}
 
-            <div className="form-group">
-                <label className="col-form-label">Tipo de documento:</label>
-                <select  className="form-control custom-select" value={this.state.tipodococumento} onChange={this.handleTipoDococumento}>
-                    <option value="cc">Cédula</option>
-                    <option value="pasaporte">Pasaporte</option>
-                </select>
-            </div>
+                        nombre={usuario.Nombre}
 
+                        apellido={usuario.Apellido}
 
-            <div className="form-group">
-                <label className="col-form-label">Documento:</label>
+                        tipoDocumento={usuario.TipoDocumentoDesc}
 
-                <div className="">
-                        <input className="form-control"
-                        value={this.state.documento}
-                        onChange={this.handleDococumento}
-                        type="number"/>
-                    </div>
+                        email={usuario.EMail}
 
-            </div>
+                        numeroCelular={usuario.NumeroCelular}
+
+                        empresa={usuario.NombreEmpresa}
+
+                        grupoInteres={usuario.GrupoInteres.Name}
+                        
+                        
+                        
+                        edit={() => this.usuarioSelectedHandler(usuario.Id)} 
+                        delete={() => this.usuarioDeletedHandler(usuario.Id)}
+                    />
+                    
+                );
+            });
+
+        
     
-    
-            <div className="form-group">
-                <label className="col-form-label">Nombres:</label>
-                    <div className="">
-                        <input className="form-control"
-                        value={this.state.nombres}
-                        onChange={this.handleNombres}
-                        type="text"/>
+        
+        return (
+            <div>
+                <div className="container">
+
+                    <div className="row mb-2">
+                        <div className="col align-self-start">
+            
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm"
+                            onClick = {this.goBackHandler}
+                            >Volver</button>
+
+                           
+            
+                        </div>
+            
+                        <div className="col align-self-end text-right">
+                        
+                            <button 
+                            type="button" 
+                            className="btn btn-outline-info btn-sm "
+                            onClick = {this.goCreateHandler}
+                            >Crear</button>
+                                
+            
+                        </div>
                     </div>
-            </div>
+                </div>
 
-
-            <div className="form-group">
-                <label className="col-form-label">Apellidos:</label>
-                    <div className="">
-                        <input className="form-control"
-                        value={this.state.apellidos}
-                        onChange={this.handleApellidos}
-                        type="text"/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h3 className="p-2">Usuarios del sistema</h3>
+                        </div>
                     </div>
-            </div>
+                </div>
 
-
-            <div className="form-group">
-                <label className="col-form-label">Correo Electrónico:</label>
-                    <div className="">
-                        <input className="form-control"
-                        value={this.state.email}
-                        onChange={this.handleEmail}
-                        type="email"/>
-                    </div>
-            </div>
+                <section >
                
-            <div className="form-group">
-                <label className="col-form-label">Número de contacto:</label>
-                    <div className="">
-                        <input className="form-control"
-                        value={this.state.numerocontacto}
-                        onChange={this.handleNumeroContacto}
-                        type="tel"/>
-                    </div>
+                {usuarios}
+
+                </section>
+
             </div>
-
-            <div className="form-group">
-                <label className="col-form-label">Género:</label>
-                <select  className="form-control custom-select" value={this.state.genero} onChange={this.handleGenero}>
-                    <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
-                    <option value="otro">Otro</option>
-                </select>
-            </div>
-
-            <div className="form-group">
-                <label className="col-form-label">Rango edad:</label>
-                <select  className="form-control custom-select" value={this.state.rangoedad} onChange={this.handleRangoEdad}>
-                    <option value="<25">Menor de 25</option>
-                    <option value=">26<=35">Entre 26 y 35</option>
-                    <option value="<35>=45">Entre 36 y 45</option>
-                    <option value=">46">Mayor de 46</option>
-                </select>
-            </div>
-
-            <div className="form-group">
-                <label className="col-form-label">Escolaridad:</label>
-                <select  className="form-control custom-select" value={this.state.escolaridad} onChange={this.handleEscolaridad}>
-                    <option value="Sin escolaridad">Sin escolaridad</option>
-                    <option value="primaria">Primaria</option>
-                    <option value="secundaria">Secundaria</option>
-                    <option value="profesional">Profesional</option>
-                    <option value="especialización">Especialización</option>
-                    <option value="maestria">Maestria</option>
-                    <option value=">doctorado">Doctorado</option>
-                </select>
-            </div>
-
-            
-            
-            <div className="d-flex justify-content-center">
-                <div className="col-sm-6 text-right">
-                    <button type="submit" className="btn btn-success">Guardar</button>
-
-                </div>
-                <div className="col-sm-6 text-left">
-                    <button type="button" className="btn btn-danger">Cancelar</button>
-                </div>
-            </div>
-            
-            
-
-            </form>
-        </div>
-        )
+        );
     }
 
-    handleSubmit = (e) => {
-        console.log(this.state);
-        e.preventDefault();
-    }
-
-    handleTipoDococumento = (e) => {
-        this.setState ({
-            tipodococumento: e.target.value
+    usuarioDeletedHandler = (id) => {
+        console.log(id);
+        
+        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        .then(response => {
+            console.log(response);
         })
+        .catch( error => {
+            console.log(error);
+        } );;
     }
 
-    handleNombres = (e) => {
-        this.setState ({
-            nombres: e.target.value
-        })
+
+    usuarioSelectedHandler = (id) => {
+        console.log(id);
     }
 
-    handleApellidos = (e) => {
-        this.setState({
-            apellidos: e.target.value
-        })
+    
+
+    goCreateHandler = () => {
+        this.props.history.push('/usuario/new');
     }
 
-    handleDococumento = (e) => {
-        this.setState({
-            documento: e.target.value 
-        })
+    goBackHandler = () => {
+        this.props.history.goBack();
     }
-
-    handleEmail = (e) => {
-        this.setState({
-            email: e.target.value 
-        })
-    }
-
-    handleNumeroContacto = (e) => {
-        this.setState({
-            numerocontacto: e.target.value
-        })
-    }
-
-    handleGenero = (e) => {
-        this.setState({
-            genero: e.target.value
-        })
-    }
-
-    handleRangoEdad = (e) => {
-        this.setState({
-            rangoedad: e.target.value
-        })
-    }
-
-    handleEscolaridad = (e) => {
-        this.setState({
-            escolaridad: e.target.value
-        })
-    }
+   
 }
+
 
 
 export default Usuario;

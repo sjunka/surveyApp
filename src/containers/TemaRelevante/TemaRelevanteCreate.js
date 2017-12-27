@@ -4,14 +4,15 @@ import React from 'react';
 //Importar componente Axios
 import axios from '../../axios-orders';
 
-
+//Importar componente Checkbox
+import Checkbox from '../../components/UI/CheckBox/Checkbox';
 
 class TemaRelevante extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             nombre : '',
-            dimension : null,
+            dimension : 1,
             cobertura: null
         }
     
@@ -40,50 +41,50 @@ class TemaRelevante extends React.Component {
             } );
 
 
-            axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
-            .then( response => {
-                // console.log("DIMENSION:", response);
+            // axios.get( 'https://sigmamaterialidad.firebaseio.com/dimension.json' )
+            // .then( response => {
+            //     // console.log("DIMENSION:", response);
                 
-                const dimensionesUpdated = [];
+            //     const dimensionesUpdated = [];
                 
-                for (let key in response.data){
-                    dimensionesUpdated.push({
-                        ...response.data[key],
-                        id: key
-                    });
+            //     for (let key in response.data){
+            //         dimensionesUpdated.push({
+            //             ...response.data[key],
+            //             id: key
+            //         });
 
-                }
-                this.setState( { dimension: dimensionesUpdated } );
+            //     }
+            //     this.setState( { dimension: dimensionesUpdated } );
 
-            })
-            .catch( error => {
-                console.log(error);
-            });
+            // })
+            // .catch( error => {
+            //     console.log(error);
+            // });
     
             
         }
     
     
     render (){
-        console.log('este es el estado inicia: ', this.state);
 
-        console.log(this.state.dimension);
+        console.log(this.state.cobertura);
+        let checkboxes = null;
 
-        let options;
+        if (this.state.cobertura === !null){
 
-        if (this.state.dimension){
-             options  = this.state.dimension.map((dimen)=>{
+            checkboxes = this.state.cobertura.map((cob => {
                 return (
-                    <option key="dimen.id" value="id">{dimen.nombre}</option>
-                    
+                    <Checkbox
+                    name = {cob.Name}
+                        label = {cob.Name}
+                        key = {cob.Id}
+                        value = {cob.Name}
+                    ></Checkbox>
                 )
-            })
-            console.log(options);
-        } else {
-            return (
-                <p>Error en dimension</p>
-            )
+            }));
         }
+
+    
 
         
        
@@ -114,58 +115,27 @@ class TemaRelevante extends React.Component {
                     value={this.state.dimension} 
                     onChange={this.handleInputChange.bind(this)}
                     name="dimension">
-                        {options}
                   
-                        {/* <option value="ambiental">Ambiental</option>
-                        <option value="social">Social</option>
-                        <option value="economica">Economica</option> */}
+                        <option value="1">Social</option>
+                        <option value="2">Economica</option>
+                        <option value="3">Ambiental</option>
                     </select>
                     <small id="namehelp" className="form-text text-muted">Dimensión</small>
                 </div>
             
-         
-
                 <div className="custom-controls-stacked">
+
                 <label className="col-form-label">Cobertura:</label>
-                    <label className="custom-control custom-checkbox">
-                        <input 
-                        type="checkbox" 
-                        onChange={this.handleInputChange.bind(this)}
-                        className="custom-control-input"/>
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Externa - Contratista</span>
-                    </label>
 
-                    <label className="custom-control custom-checkbox">
-                        <input 
-                        type="checkbox" 
-                        className="custom-control-input"
-                         onChange={this.handleInputChange.bind(this)}
-                        />
-                        
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Interna - Comunidad</span>
-                    </label>
+                    
+                    {
+                        this.state.cobertura && this.state.cobertura.Name &&
+                        checkboxes
+                    }
+                    
+                   
 
-                    <label className="custom-control custom-checkbox">
-                        <input 
-                        type="checkbox"
-                        className="custom-control-input"
-                         onChange={this.handleInputChange.bind(this)}
-                        />
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Interna - Recurso humano</span>
-                    </label>
-
-                    <label className="custom-control custom-checkbox">
-                        <input 
-                        type="checkbox" 
-                        className="custom-control-input"
-                         onChange={this.handleInputChange.bind(this)}
-                        />
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">Externa - Comunidades</span>
-                    </label>
+                    
               </div>
 
               <div className="d-flex justify-content-center">

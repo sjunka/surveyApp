@@ -39,6 +39,7 @@ import Pregunta  from './containers/Pregunta/Pregunta';
 import PreguntaCreate  from './containers/Pregunta/PreguntaCreate';
 
 import Usuario from './containers/Usuario/Usuario';
+import UsuarioCreate from './containers/Usuario/UsuarioCreate';
 
 import Encuesta from './containers/Encuesta/Encuesta';
 import EncuestaCreate from './containers/Encuesta/EncuestaCreate';
@@ -78,6 +79,7 @@ import Resultado from './containers/Resultado/Resultado';
             <Route exact path="/pregunta/new" component= {PreguntaCreate} />
 
             <Route exact path="/usuario" component= {Usuario} />
+            <Route exact path="/usuario/new" component= {UsuarioCreate} />
 
             <Route exact path="/encuesta" component= {Encuesta} />
             <Route exact path="/encuesta/new" component= {EncuestaCreate} />
