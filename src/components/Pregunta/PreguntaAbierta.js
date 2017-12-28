@@ -3,7 +3,7 @@ import React from 'react';
 const pstyle = {
     marginBottom: 0
 }
-const EncuestaList = (props) => (
+const PreguntaList = (props) => (
     <div>
          <div className="container">
             <div className="row">
@@ -12,9 +12,7 @@ const EncuestaList = (props) => (
                     <div className="card mb-2">
                         <div className="card-body">
                             <h5 className="card-title">{props.name}</h5>
-                             <p style={pstyle}><strong>Descripcion:</strong> {props.description}</p>
-                             <p style={pstyle}><strong>Fecha Inicio:</strong> {props.inicialdate}</p>
-                             <p style={pstyle}><strong>Fecha Final:</strong> {props.enddate}</p>
+                             <p style={pstyle}><strong>Tipo:</strong> {props.tipoPregunta}</p>
                              
                         </div>
 
@@ -25,7 +23,7 @@ const EncuestaList = (props) => (
                                     <button 
                                     type="submit" 
                                     className="btn btn-success btn-sm"
-                                    onClick={props.asignarPreguntas}>Asignar Preguntas</button>
+                                    onClick={props.edit}>Editar</button>
 
                                 </div>
                                 <div className="col-sm-4 text-left mb-2">
@@ -45,4 +43,4 @@ const EncuestaList = (props) => (
    
 );
 
-export default EncuestaList;
+export default PreguntaList;

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 //Importar componente Axios
 import axios from '../../axios-orders';
+
 //import PreguntaList component
 import EncuestaList from '../../components/Encuesta/EncuestaList';
 
@@ -54,11 +55,11 @@ class Encuesta extends Component {
                     <EncuestaList
                         key={encuesta.Id}
                         name={encuesta.Name}
-                        description={encuesta.descripcion}
+                        description={encuesta.Introduccion}
                         inicialdate={encuesta.FechaInicio}
-                        enddate={encuesta.FechaFinal}
-                        edit={() => this.encuestaSelectedHandler(encuesta.id)} 
-                        delete={() => this.encuestaDeletedHandler(encuesta.id)}
+                        enddate={encuesta.FechaFin}
+                        asignarPreguntas={() => this.encuestaSelectedHandler(encuesta.Id)} 
+                        delete={() => this.encuestaDeletedHandler(encuesta.Id)}
                     />
                     
                 );
@@ -106,7 +107,6 @@ class Encuesta extends Component {
                 </div>
 
                 <section >
-               
                 {encuestas}
                 </section>
 
@@ -129,6 +129,8 @@ class Encuesta extends Component {
 
     encuestaSelectedHandler = (id) => {
         console.log(id);
+        this.props.history.push('/encuesta/asignarpreguntas');
+        
     }
 
     

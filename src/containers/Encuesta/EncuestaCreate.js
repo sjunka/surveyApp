@@ -1,8 +1,7 @@
 //Importar componentes React
 import React from 'react';
 
-//Importar componentes AsignarPregunta
-import EncuestaPreguntas from './EncuestaPreguntas.js';
+
 
 class Encuesta extends React.Component {
     constructor(props){
@@ -64,14 +63,13 @@ class Encuesta extends React.Component {
                 </div>
 
                 <div className="d-flex justify-content-center">
-                    <div className="col-sm-6 text-center">
+                    <div className="col-sm-6 text-center mb-3">
                         <button type="submit" className="btn btn-success">Crear Encuesta</button>
                     </div>
 
                 </div>
 
             </form>
-            <EncuestaPreguntas/>
         </div>
         )
     }
