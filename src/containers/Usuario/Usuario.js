@@ -139,14 +139,16 @@ class Usuario extends Component {
     }
 
     usuarioDeletedHandler = (id) => {
-        console.log(id);
+         
+        const idUsuario = id.toString();
+        console.log(idUsuario);
         
-        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        axios.delete(`/UsuarioEncuesta/${idUsuario}`)
         .then(response => {
-            console.log(response);
+            console.log('la Usuario se elimino correctamente',response);
         })
         .catch( error => {
-            console.log(error);
+            console.log('error la Usuario no pudo ser borrada por el suguiente motivo: ',error);
         } );;
     }
 

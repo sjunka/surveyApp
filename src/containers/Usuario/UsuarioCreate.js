@@ -168,37 +168,51 @@ class Usuario extends React.Component {
     handleSubmit = (e) => {
         //console.log(this.state);
         const usuario = {
-            TipoDocumento: this.state.tipodococumento,
 
-            NumeroDocumento: this.state.documento,
+            
+                "TipoDocumento": this.state.tipodococumento,
+                "NumeroDocumento": this.state.documento,
+                "Nombre": this.state.nombres,
+                "Apellido": this.state.apellidos,
+                "EMail": this.state.email,
+                "NumeroCelular": this.state.numerocontacto,
+                "Genero": this.state.genero,
+                "Edad": 100,
+                "NombreEmpresa": this.state.nombreEmpresa,
+                "GrupoInteres": {
+                    "Id": 25
+                },
+                "Latitud": this.state.latitud,
+                "Longitud": this.state.longitud,
+                "RangoEdad": {
+                    Id:this.state.rangoedad
+                },
+                "NivelEducativo": {
+                    Id: this.state.escolaridad
+                },
+            
 
-            Nombre: this.state.nombres,
 
-            Apellido: this.state.apellidos,
-
-            EMail: this.state.email,
-
-            NumeroCelular: this.state.numerocontacto,
-
-            Genero: this.state.genero,
-
-            Edad: this.state.rangoedad,
-
-            NombreEmpresa: this.state.nombreEmpresa,
-
-            Latitud: this.state.latitud,
-
-            Longitud: this.state.longitud
             }
 
         console.log(usuario);
         
         axios.post('/UsuarioEncuesta',usuario)
         .then(response => 
+
             this.setState({
-                nombre : '',
-                dimension : '',
-                cobertura : ''
+                tipodococumento : 1,
+                documento: '',
+                nombres : '',
+                apellidos: '',
+                email: '',
+                numerocontacto:'',
+                genero: 1,
+                rangoedad:1,
+                nombreEmpresa: '',
+                escolaridad: 2,
+                latitud: 0.0,
+                longitud: 0.0
             })    
         )
         .catch(error => console.log(error));

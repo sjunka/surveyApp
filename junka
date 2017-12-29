@@ -1,0 +1,227 @@
+[33mcommit ad0164f0ea4bf1cfe18d80ddf188bca1ded8522c[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Thu Dec 28 17:44:05 2017 -0500
+
+    Added enttity for EncuestaPregunta and PreguntaAbierta
+
+[33mcommit b1bf0601611ab0e8f8e5df198a5a9b3a02528581[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Dec 27 18:18:24 2017 -0500
+
+    modified UsuarioEntity
+
+[33mcommit fae4c3e839ec8e419754e7d22d495a63ea2a36be[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Dec 27 16:47:01 2017 -0500
+
+    created user logic
+
+[33mcommit 818477ecb6b18fa596217083bbbb40d037769eaa[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Dec 27 15:25:14 2017 -0500
+
+    Crated User interfaces
+
+[33mcommit 3e6c6bf39676e006334d8289e9a8c2ed76e99727[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Dec 27 09:00:51 2017 -0500
+
+    changed lenguage settings
+
+[33mcommit e5c1790ac32d58d433c32beade5c58489b61fb2e[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Tue Dec 26 15:08:24 2017 -0500
+
+    created entity preguntas and preguntaList
+
+[33mcommit 89e59cf3d89ca6222b6ac5c13eebe4293a438ea3[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Fri Dec 22 16:05:14 2017 -0500
+
+    updated preguntas
+
+[33mcommit 702a7b52222e200ae48ed6e0f8a8ea6d1f49df1c[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Thu Dec 21 18:13:37 2017 -0500
+
+    modified entitites
+
+[33mcommit a7603af8434b1ebd48e26eec95d6d73919283a0f[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Dec 20 18:52:56 2017 -0500
+
+    added entities preguntas & preguntaCreate
+
+[33mcommit 82193cca217ae04e3b394519964e78195b57d8f4[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Tue Dec 19 18:35:26 2017 -0500
+
+    added Encuesta entity
+
+[33mcommit 57af0c1dce7a89bcf31be383929eae598e76b266[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Tue Dec 19 18:02:16 2017 -0500
+
+    Added entities pregunta TemaRelevante
+
+[33mcommit 1fd0d994ce5cb372c032d2bbba70678631a34141[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Fri Dec 15 12:04:25 2017 -0500
+
+    created login component
+
+[33mcommit 2614346c906943b18f923be3e5b21b3484c8b0c8[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Thu Dec 14 17:31:24 2017 -0500
+
+    created temarelevante entity
+
+[33mcommit 358435d25d3d93ecd8c45fdb8b05aa37c1f9cd3d[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Tue Dec 5 12:28:48 2017 -0500
+
+    created entitiy for TemaRelevante
+
+[33mcommit a4f9bc022a41bff35388e87eb8f1810535e0eb32[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Mon Dec 4 12:23:28 2017 -0500
+
+    Created GrupoInteres entity with crud funcionality
+
+[33mcommit db58577b1c8189f96ae01ff9f42b765cd7e3e8e4[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Dec 1 12:37:02 2017 -0500
+
+    commited
+
+[33mcommit 982c785dae0ee79f540a064e4fc9ba15d6efead5[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Mon Nov 27 12:39:09 2017 -0500
+
+    added container components, added charts, added new libraries
+
+[33mcommit 04dcccb90ae58d2adc32a4289f4b19a83a4379da[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Fri Nov 24 15:25:39 2017 -0500
+
+    modifications names, navlinks, CoberturaCreate
+
+[33mcommit ba388491c89adf14d858e09bfc54d42752bdd2c1[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Nov 24 12:48:59 2017 -0500
+
+    testing endpoints of Cobertura
+
+[33mcommit 79de86967daf4c37760135f95a129d3feece2394[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Thu Nov 23 12:25:21 2017 -0500
+
+    created Cobertura entity, api is not working correctly
+
+[33mcommit 696cc1a127c161a695c2c0627f840e61ab849de1[m
+Author: Sergio Junca <sergio.junca@gmail.com>
+Date:   Wed Nov 22 23:13:33 2017 -0500
+
+    Added crud funcionality, new DimensionCreate container
+
+[33mcommit 4cba989f52e7bc1ecaf8273daa400a9f76f24c6d[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Wed Nov 22 12:50:54 2017 -0500
+
+    dimension component. list dimensions working
+
+[33mcommit d39fd67df2eff22e9092c995311bb2e4ebb4b114[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Nov 17 12:11:05 2017 -0500
+
+    changes on gitignore
+
+[33mcommit 8a746a6fd308ea2de5a1a40668fd33ce636799e3[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Nov 17 12:08:45 2017 -0500
+
+    created axios instance, modified landing component. created spinner ui
+
+[33mcommit 4b90c36d38f5120bdd282da23a0ee1cfc967f3fc[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Thu Nov 16 12:37:12 2017 -0500
+
+    created toolbar, navigationitems, sidedrawer
+
+[33mcommit b5c5bc574c5c8e3b0e6e479b691d535fa0cd50ac[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Wed Nov 15 09:29:32 2017 -0500
+
+    cambios para configuracion
+
+[33mcommit 20b5f141ecc5833b86034009ca62d28e0463e0d6[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Nov 3 12:05:51 2017 -0500
+
+    created componentes ListarPreguntas, ListarTemasRelevantes. First try in dynamic components. Created views and examples for the backendev As if Webservices should send information requested.
+
+[33mcommit 83eb7344fbec6f0326f826610ffdf82cf5ac5b74[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Thu Nov 2 12:21:54 2017 -0500
+
+    added axios to the workflow, testing with webAPI, it works!
+
+[33mcommit 6a5198498ff946fd87d870040fbb3a3367a37054[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Mon Oct 30 12:13:31 2017 -0500
+
+    Created new components as needed, fixed colors scheme and names
+
+[33mcommit 942166c517fcf38e3e33eb812273259395938261[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Wed Oct 25 12:10:17 2017 -0500
+
+    Added RegistrarUsuario component, view and handles
+
+[33mcommit 78e672254f6881736153f409cde0e53d509d376f[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Tue Oct 24 12:20:14 2017 -0500
+
+    Added dropdown menu, prototype validated
+
+[33mcommit cdf2deef20b45b6209678e80cffbbcbb9ea93fd6[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Mon Oct 23 12:18:48 2017 -0500
+
+    fixed bug #1526
+
+[33mcommit aac6904b6f5e30fa3429d79e714cb68fc9a46417[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Mon Oct 23 11:04:30 2017 -0500
+
+    changes on components
+
+[33mcommit f95d4477d0d4c5a24d5e6a538d370cf9c558f0f1[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Fri Oct 20 12:37:48 2017 -0500
+
+    Se agrego la barra de navegacion, cambio de estilos a boostrap4
+
+[33mcommit 65451751a79c24cacf8eee373243e7a531cfa6e0[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Thu Oct 19 10:58:40 2017 -0500
+
+    se desarrollaron entidades cobertura dimension temarelevante
+
+[33mcommit 532301b0b645dda92c12c93a7ef96b4bf92b8c24[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Wed Oct 18 12:16:47 2017 -0500
+
+    inital commit
+
+[33mcommit 271b968e2d04df2362e17836e46cd7a6ae86990c[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Tue Oct 17 12:15:52 2017 -0500
+
+    'Cambios'
+
+[33mcommit b9d801b613abad7285499d94b7eec1bbd5e9bcc2[m
+Author: sergio.junca@gmail.com <sergio.junca@gmail.com>
+Date:   Tue Oct 17 10:40:23 2017 -0500
+
+    Inicio proyecto
