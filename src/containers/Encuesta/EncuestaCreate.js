@@ -1,109 +1,133 @@
 //Importar componentes React
-import React from 'react';
+import React from "react";
 
-
+//Importar componente Axios
+import axios from "../../axios-orders";
 
 class Encuesta extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            nombre : '',
-            descripcion : '',
-            periodoinicio: '',
-            periodofin: ''
-        }
-    
-    }
-    
-    
-    render (){
-        return(
-        <div className="container">
-            
-            <h4 className="col-form-label">Encuesta</h4>
-            <form onSubmit={this.handleSubmit}>
+  constructor(props) {
+    super(props);
+    this.state = {
+      introduccion: "",
+      nombre: "",
+      fechaFin: "",
+      fechaInicio: ""
+    };
+  }
 
-                <div className="form-group">
-                    <label className="col-form-label">Nombre:</label>
-                        <div className="">
-                            <input className="form-control"
-                            value={this.state.nombre}
-                            onChange={this.handleNombre}
-                            type="text"/>
-                            <small id="namehelp" className="form-text text-muted">Nombre de  la encuesta</small>
-                        </div>
-                </div>
+  render() {
+    return (
+      <div className="container">
+        <h4 className="col-form-label">Encuesta</h4>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label className="col-form-label">Nombre:</label>
+            <div className="">
+              <input
+                className="form-control"
+                value={this.state.nombre}
+                onChange={this.handleNombre}
+                type="text"
+              />
+              <small id="namehelp" className="form-text text-muted">
+                Nombre de la encuesta
+              </small>
+            </div>
+          </div>
 
-                <div className="form-group">
-                        <label className="col-form-label">Descripción:</label>
-                        <div className="">
-                            <textarea 
-                            className="form-control" 
-                            value = {this.state.descripcion}
-                            onChange = {this.handleDescripcion}>
-                            </textarea>
-                           <small id="namehelp" className="form-text text-muted">Describle la encuesta</small>
-                        </div>
-                </div>
+          <div className="form-group">
+            <label className="col-form-label">Descripción:</label>
+            <div className="">
+              <textarea
+                className="form-control"
+                value={this.state.introduccion}
+                onChange={this.handleDescripcion}
+              />
+              <small id="namehelp" className="form-text text-muted">
+                Describe la encuesta
+              </small>
+            </div>
+          </div>
 
-                <div className="form-group">
-                        <label className="col-form-label">Fecha Inicio:</label>
-                        <input type="date" name="periodoinicio"
-                            className="form-control" 
-                            value = {this.state.periodoinicio}
-                            onChange = {this.handlePeriodoInicio}/>
-                </div>
+          <div className="form-group">
+            <label className="col-form-label">Fecha Inicio:</label>
+            <input
+              type="date"
+              name="fechaInicio"
+              className="form-control"
+              value={this.state.fechaInicio}
+              onChange={this.handlePeriodoInicio}
+            />
+          </div>
 
-                <div className="form-group">
-                        <label className="col-form-label">Fecha Final:</label>
-                        <input type="date" name="periodofin"
-                            className="form-control" 
-                            value = {this.state.periodofin}
-                            onChange = {this.handlePeriodoFin}/>
-                </div>
+          <div className="form-group">
+            <label className="col-form-label">Fecha Final:</label>
+            <input
+              type="date"
+              name="fechaFin"
+              className="form-control"
+              value={this.state.fechaFin}
+              onChange={this.handlePeriodoFin}
+            />
+          </div>
 
-                <div className="d-flex justify-content-center">
-                    <div className="col-sm-6 text-center mb-3">
-                        <button type="submit" className="btn btn-success">Crear Encuesta</button>
-                    </div>
+          <div className="d-flex justify-content-center">
+            <div className="col-sm-6 text-center mb-3">
+              <button type="submit" className="btn btn-success">
+                Crear Encuesta
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
 
-                </div>
+  handleSubmit = e => {
+    const encuesta = {
+      Name: this.state.nombre,
+      Introduccion: this.state.introduccion,
+      FechaInicio: this.state.fechaInicio,
+      FechaFin: this.state.fechaFin
+    };
 
-            </form>
-        </div>
-        )
-    }
+    console.log(encuesta);
 
-    handleSubmit = (e) => {
-        console.log(this.state);
-        e.preventDefault();
-    }
-
-    handleNombre = (e) => {
-        this.setState ({
-            nombre: e.target.value
-        })
-    }
-
-    handleDescripcion = (e) => {
-        this.setState ({
-            descripcion: e.target.value
-        })
-    }
-
-    handlePeriodoInicio = (e) =>{
+    axios
+      .post("/Encuesta", encuesta)
+      .then(response =>
         this.setState({
-            periodoinicio: e.target.value 
+          name: "",
+          introduccion: ""
         })
-    }
+      )
+      .catch(error => console.log(error));
+    e.preventDefault();
+  };
 
-    handlePeriodoFin = (e) => {
-        this.setState({
-            periodofin: e.target.value
-        })
-    }
+  handleNombre = e => {
+    this.setState({
+      nombre: e.target.value
+    });
+  };
 
+  handleDescripcion = e => {
+    this.setState({
+      introduccion: e.target.value
+    });
+  };
+
+  handlePeriodoInicio = e => {
+    this.setState({
+      fechaInicio: e.target.value
+    });
+  };
+
+  handlePeriodoFin = e => {
+    this.setState({
+      fechaFin: e.target.value
+    });
+  };
 }
-
 
 export default Encuesta;
