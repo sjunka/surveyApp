@@ -27,7 +27,8 @@ class EncuestaPreguntas extends React.Component {
     this.state = {
       preguntas: [],
       filterString: "",
-      idEncuesta: ""
+      idEncuesta: "",
+      encuestaColeccion: []
     };
   }
 
@@ -35,8 +36,6 @@ class EncuestaPreguntas extends React.Component {
     axios
       .get("/Pregunta")
       .then(response => {
-        console.log("la respuesta del server es:", response);
-
         const preguntasUpdated = [];
 
         for (let key in response.data) {
@@ -46,7 +45,7 @@ class EncuestaPreguntas extends React.Component {
           });
         }
 
-        console.log(preguntasUpdated);
+        console.log("las preguntas de la bd son :", preguntasUpdated);
 
         const recibirIdEncuesta = this.props.match.params.idEncuesta;
 
@@ -54,8 +53,6 @@ class EncuestaPreguntas extends React.Component {
           preguntas: preguntasUpdated,
           idEncuesta: recibirIdEncuesta
         });
-
-        console.log(this.state.preguntas);
       })
       .catch(error => {
         console.log(error);
@@ -65,16 +62,22 @@ class EncuestaPreguntas extends React.Component {
   agregarPreguntaEncuesta = (idPregunta, idEncuesta) => {
     console.log(idPregunta, idEncuesta);
 
-    // encuestaColeccion: [
-    //   {
-    //     Pregunta: {
-    //       id: ""
-    //     },
-    //     Encuesta: {
-    //       id: ""
-    //     }
-    //   }
-    // ]
+    let preguntaEnq = [...this.state.encuestaColeccion];
+
+    let agregarPreguntanueva = {
+      Pregunta: {
+        Id: idPregunta
+      },
+      Encuesta: {
+        Id: idEncuesta
+      }
+    };
+
+    preguntaEnq.push(agregarPreguntanueva);
+
+    this.setState({ encuestaColeccion: preguntaEnq });
+
+    console.log(this.state.encuestaColeccion);
   };
 
   removerPreguntaEncuesta = (idPregunta, idEncuesta) => {
