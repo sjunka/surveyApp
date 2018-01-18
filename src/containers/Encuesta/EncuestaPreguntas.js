@@ -4,9 +4,7 @@ import React, { Component } from "react";
 //Importar componente Axios
 import axios from "../../axios-orders";
 
-const pstyle = {
-  marginBottom: 0
-};
+import PreguntaEncuesta from "../../components/Pregunta/PreguntaEncuesta";
 
 class Filter extends Component {
   render() {
@@ -78,42 +76,15 @@ class EncuestaPreguntas extends React.Component {
           })
           .map(pregunta => {
             return (
-              <div key="pregunta.Id" className="mb-4">
-                <div className="card">
-                  <div className="card-header">
-                    <div className="text-center">
-                      <label className="custom-control custom-checkbox">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          defaultChecked
-                        />
-                        <span className="custom-control-indicator" />
-                        <span className="custom-control-description">
-                          Activo
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title">{pregunta.Name}</h5>
-                    <p style={pstyle}>
-                      <strong>Tema Relevante:</strong>{" "}
-                      {pregunta.TemaRelevante.Name}
-                    </p>
-                    <p style={pstyle}>
-                      <strong>Dimensión:</strong>{" "}
-                      {pregunta.TemaRelevante.Categoria.Name}
-                    </p>
-                    <p style={pstyle}>
-                      <strong>Tipo:</strong> {pregunta.TipoPreguntaDesc}
-                    </p>
-                    <p style={pstyle}>
-                      <strong>Grupo Interes:</strong> {pregunta.GruposIntereres}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <PreguntaEncuesta
+                key={pregunta.Id}
+                id={pregunta.Id}
+                preguntaName={pregunta.Name}
+                temaReveName={pregunta.TemaRelevante.Name}
+                temaReleveCategory={pregunta.TemaRelevante.Categoria.Name}
+                preguntaType={pregunta.TipoPreguntaDesc}
+                grupoInteres={pregunta.GruposIntereres}
+              />
             );
           })}
         <div className="d-flex justify-content-center mt-3">

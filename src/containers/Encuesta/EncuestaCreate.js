@@ -84,11 +84,24 @@ class Encuesta extends React.Component {
   }
 
   handleSubmit = e => {
+    // "Introduccion": "esta es una nueva encuesta",
+    // "FechaInicio": "2018-01-05",
+    // "FechaFin": "2018-01-11",
+    // "FechaInicioReporte": "2018-01-06",
+    // "FechaFinReporte": "2018-01-12",
+    // "RutaImagen": "",
+    // "Id": 0,
+    // "Name": "Encuesta nueva",
+    // "Active": false
+
     const encuesta = {
-      Name: this.state.nombre,
       Introduccion: this.state.introduccion,
       FechaInicio: this.state.fechaInicio,
-      FechaFin: this.state.fechaFin
+      FechaFin: this.state.fechaFin,
+      FechaInicioReporte: this.state.fechaInicio,
+      FechaFinReporte: this.state.fechaFin,
+      RutaImagen: " ",
+      Name: this.state.nombre
     };
 
     console.log(encuesta);
