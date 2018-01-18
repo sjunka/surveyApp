@@ -26,7 +26,8 @@ class EncuestaPreguntas extends React.Component {
     super(props);
     this.state = {
       preguntas: [],
-      filterString: ""
+      filterString: "",
+      idEncuesta: ""
     };
   }
 
@@ -47,8 +48,11 @@ class EncuestaPreguntas extends React.Component {
 
         console.log(preguntasUpdated);
 
+        const recibirIdEncuesta = this.props.match.params.idEncuesta;
+
         this.setState({
-          preguntas: preguntasUpdated
+          preguntas: preguntasUpdated,
+          idEncuesta: recibirIdEncuesta
         });
 
         console.log(this.state.preguntas);
@@ -57,6 +61,25 @@ class EncuestaPreguntas extends React.Component {
         console.log(error);
       });
   }
+
+  agregarPreguntaEncuesta = (idPregunta, idEncuesta) => {
+    console.log(idPregunta, idEncuesta);
+
+    // encuestaColeccion: [
+    //   {
+    //     Pregunta: {
+    //       id: ""
+    //     },
+    //     Encuesta: {
+    //       id: ""
+    //     }
+    //   }
+    // ]
+  };
+
+  removerPreguntaEncuesta = (idPregunta, idEncuesta) => {
+    console.log(idPregunta);
+  };
 
   render() {
     return (
@@ -84,6 +107,15 @@ class EncuestaPreguntas extends React.Component {
                 temaReleveCategory={pregunta.TemaRelevante.Categoria.Name}
                 preguntaType={pregunta.TipoPreguntaDesc}
                 grupoInteres={pregunta.GruposIntereres}
+                agregarPregunta={() => {
+                  this.agregarPreguntaEncuesta(
+                    pregunta.Id,
+                    this.state.idEncuesta
+                  );
+                }}
+                removerPregunta={() => {
+                  this.removerPreguntaEncuesta(pregunta.Id);
+                }}
               />
             );
           })}

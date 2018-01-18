@@ -1,101 +1,105 @@
 //******************************
 //  Import componentes React   *
 //******************************
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Route, Switch } from 'react-router-dom';
-
-
-//******************************
-// Import Containers(HOC) y Components 
-//******************************
-
-import Layout from './hoc/Layout/Layout';
+import { Route, Switch } from "react-router-dom";
 
 //******************************
-// Import Internal Components 
+// Import Containers(HOC) y Components
 //******************************
 
-import Landing  from './components/Landing/Landing';
+import Layout from "./hoc/Layout/Layout";
 
-import Inicio  from './components/Inicio/Inicio';
+//******************************
+// Import Internal Components
+//******************************
 
-import Login  from './containers/Login/Login';
+import Landing from "./components/Landing/Landing";
 
+import Inicio from "./components/Inicio/Inicio";
 
-import Dimension  from './containers/Dimension/Dimension';
-import DimensionCreate  from './containers/Dimension/DimensionCreate';
+import Login from "./containers/Login/Login";
 
-import Cobertura  from './containers/Cobertura/Cobertura';
-import CoberturaCreate  from './containers/Cobertura/CoberturaCreate';
+import Dimension from "./containers/Dimension/Dimension";
+import DimensionCreate from "./containers/Dimension/DimensionCreate";
 
-import GrupoInteres  from './containers/GrupoInteres/GrupoInteres';
-import GrupoInteresCreate  from './containers/GrupoInteres/GrupoInteresCreate';
+import Cobertura from "./containers/Cobertura/Cobertura";
+import CoberturaCreate from "./containers/Cobertura/CoberturaCreate";
 
-import TemaRelevante  from './containers/TemaRelevante/TemaRelevante';
-import TemaRelevanteCreate  from './containers/TemaRelevante/TemaRelevanteCreate';
+import GrupoInteres from "./containers/GrupoInteres/GrupoInteres";
+import GrupoInteresCreate from "./containers/GrupoInteres/GrupoInteresCreate";
 
-import Pregunta  from './containers/Pregunta/Pregunta';
-import PreguntaCreate  from './containers/Pregunta/PreguntaCreate';
+import TemaRelevante from "./containers/TemaRelevante/TemaRelevante";
+import TemaRelevanteCreate from "./containers/TemaRelevante/TemaRelevanteCreate";
 
-import Usuario from './containers/Usuario/Usuario';
-import UsuarioCreate from './containers/Usuario/UsuarioCreate';
+import Pregunta from "./containers/Pregunta/Pregunta";
+import PreguntaCreate from "./containers/Pregunta/PreguntaCreate";
 
-import Encuesta from './containers/Encuesta/Encuesta';
-import EncuestaCreate from './containers/Encuesta/EncuestaCreate';
-import EncuestaPreguntas from './containers/Encuesta/EncuestaPreguntas';
+import Usuario from "./containers/Usuario/Usuario";
+import UsuarioCreate from "./containers/Usuario/UsuarioCreate";
 
-import Resultado from './containers/Resultado/Resultado';
+import Encuesta from "./containers/Encuesta/Encuesta";
+import EncuestaCreate from "./containers/Encuesta/EncuestaCreate";
+import EncuestaPreguntas from "./containers/Encuesta/EncuestaPreguntas";
 
+import Resultado from "./containers/Resultado/Resultado";
 
-
-//Importar Estilos 
+//Importar Estilos
 //import './App.css';
 
-  class App extends Component {
-    render () {
-      return (
-        <div>
-          <Layout>
-            <Switch>
-            <Route exact path="/"  component={Landing} />
-            
-            <Route exact path="/login"  component={Login} />
-            
-            <Route exact path="/inicio"  component={Inicio} />
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Landing} />
 
-            <Route exact path="/dimension" component= {Dimension} />
-            <Route exact path="/cobertura" component= {Cobertura} />
-            
-            <Route exact path="/cobertura/new"   component= {CoberturaCreate} />
-            <Route exact path="/dimension/new" component= {DimensionCreate} />
+            <Route exact path="/login" component={Login} />
 
-            <Route exact path="/temarelevante" component= {TemaRelevante} />
-            <Route exact path="/temarelevante/new" component= {TemaRelevanteCreate} />
+            <Route exact path="/inicio" component={Inicio} />
 
-            <Route exact path="/grupointeres" component= {GrupoInteres} />
-            <Route exact path="/grupointeres/new" component= {GrupoInteresCreate} />
+            <Route exact path="/dimension" component={Dimension} />
+            <Route exact path="/cobertura" component={Cobertura} />
 
-            <Route exact path="/pregunta" component= {Pregunta} />
-            <Route exact path="/pregunta/new" component= {PreguntaCreate} />
+            <Route exact path="/cobertura/new" component={CoberturaCreate} />
+            <Route exact path="/dimension/new" component={DimensionCreate} />
 
-            <Route exact path="/usuario" component= {Usuario} />
-            <Route exact path="/usuario/new" component= {UsuarioCreate} />
+            <Route exact path="/temarelevante" component={TemaRelevante} />
+            <Route
+              exact
+              path="/temarelevante/new"
+              component={TemaRelevanteCreate}
+            />
 
-            <Route exact path="/encuesta" component= {Encuesta} />
-            <Route exact path="/encuesta/new" component= {EncuestaCreate} />
-            <Route exact path="/encuesta/asignarpreguntas" component= {EncuestaPreguntas} />
+            <Route exact path="/grupointeres" component={GrupoInteres} />
+            <Route
+              exact
+              path="/grupointeres/new"
+              component={GrupoInteresCreate}
+            />
 
-            <Route exact path="/resultado" component= {Resultado} />
+            <Route exact path="/pregunta" component={Pregunta} />
+            <Route exact path="/pregunta/new" component={PreguntaCreate} />
 
-            
-            </Switch>
-          </Layout>
-        </div>
-      );
-    }
+            <Route exact path="/usuario" component={Usuario} />
+            <Route exact path="/usuario/new" component={UsuarioCreate} />
+
+            <Route exact path="/encuesta" component={Encuesta} />
+            <Route exact path="/encuesta/new" component={EncuestaCreate} />
+            <Route
+              exact
+              path="/encuesta/asignarpreguntas/:idEncuesta"
+              component={EncuestaPreguntas}
+            />
+
+            <Route exact path="/resultado" component={Resultado} />
+          </Switch>
+        </Layout>
+      </div>
+    );
   }
-
-
+}
 
 export default App;
