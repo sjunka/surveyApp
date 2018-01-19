@@ -4,6 +4,9 @@ import React, { Component } from "react";
 //Importar componente Axios
 import axios from "../../axios-orders";
 
+//Importar componente toast
+import { ToastContainer, toast } from "react-toastify";
+
 import PreguntaEncuesta from "../../components/Pregunta/PreguntaEncuesta";
 
 class Filter extends Component {
@@ -59,11 +62,35 @@ class EncuestaPreguntas extends React.Component {
       });
   }
 
+  componentDidUpdate() {
+    console.log("la coleccion se actualizo", this.state.encuestaColeccion);
+  }
+
+  updatePreguntaColeccion = agregarPreguntanueva => {
+    //Revisa el id de la pregunta para agregar a la coleccion
+
+    let encuestaColeccionActualizada = [...this.state.encuestaColeccion];
+
+    const preguntaIndex = encuestaColeccionActualizada.findIndex(
+      encuestaPregunta =>
+        encuestaPregunta.Pregunta.Id === agregarPreguntanueva.Pregunta.Id
+    );
+
+    if (preguntaIndex === -1) {
+      // Indica que la pregunta no esta en el arreglo
+      encuestaColeccionActualizada.push(agregarPreguntanueva);
+      this.setState({ encuestaColeccion: encuestaColeccionActualizada });
+      //Mensaje alerta en pantalla
+      this.notifySucces();
+    } else {
+      //Mensaje alerta en pantalla
+      let text = "Esta pregunta ya se encuentra la lista";
+      let autoclose = 5000;
+      this.notifyDuplicate(text, autoclose);
+    }
+  };
+
   agregarPreguntaEncuesta = (idPregunta, idEncuesta) => {
-    console.log(idPregunta, idEncuesta);
-
-    let preguntaEnq = [...this.state.encuestaColeccion];
-
     let agregarPreguntanueva = {
       Pregunta: {
         Id: idPregunta
@@ -73,34 +100,85 @@ class EncuestaPreguntas extends React.Component {
       }
     };
 
-    preguntaEnq.push(agregarPreguntanueva);
-
-    this.setState({ encuestaColeccion: preguntaEnq });
-
-    console.log(this.state.encuestaColeccion);
+    this.updatePreguntaColeccion(agregarPreguntanueva);
   };
 
-  removerPreguntaEncuesta = (idPregunta, idEncuesta) => {
-    console.log(idPregunta);
+  removerPreguntaEncuesta = (idPregunta, idEncuesta, index) => {
+    //Elimina una pregunta segun su Id dentro de la encuestaColeccion
+
+    let preguntaParaEliminarId = [...this.state.encuestaColeccion];
+
+    //Validar pregunta.id si exista para el proceso de elimnar
+    const arregloValidar = preguntaParaEliminarId.findIndex(
+      encuestaPregunta => encuestaPregunta.Pregunta.Id === idPregunta
+    );
+
+    if (arregloValidar === -1) {
+      let text = "Debes agregar la pregunta primero";
+      let autoclose = 5000;
+      this.notifyDuplicate(text, autoclose);
+      console.log("la pregunta no esta en el arreglo");
+    } else {
+      //Devuelve arreglo filtrado (remueve la pregunta de la coleccion)
+      let nuevaEncuestaColeccion = preguntaParaEliminarId.filter(
+        encuestaPregunta => encuestaPregunta.Pregunta.Id !== idPregunta
+      );
+      this.setState({ encuestaColeccion: nuevaEncuestaColeccion });
+      //Mensaje alerta en pantalla
+      this.notifyError();
+    }
+  };
+
+  notifySucces = () => {
+    toast.success("Pregunta agregada", {
+      position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+
+  notifyError = () => {
+    let a = 1;
+    toast.error(`Pregunta eliminada: ${a}`, {
+      position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+
+  notifyDuplicate = (text, autoclose) => {
+    toast.info(text, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: autoclose
+    });
+  };
+
+  enumerarPreguntasColeccion = () => {
+    //Metodo para determinar el length de las coleccion de preguntas y del total de preguntas
+    let preguntasEnColeccion = [...this.state.encuestaColeccion].length;
+    let preguntasEnBasedatos = [...this.state.preguntas].length;
+
+    console.log(
+      "las preguntas en coleccion son: " +
+        preguntasEnColeccion +
+        " preguntas en bd : " +
+        preguntasEnBasedatos
+    );
   };
 
   render() {
     return (
       <div className="container">
+        <ToastContainer autoClose={3000} />
         <h4 className="col-form-label">Asignar Preguntas</h4>
         <Filter
           onTextChange={text => {
             this.setState({ filterString: text });
           }}
         />
-
         {this.state.preguntas
           .filter(pregunta => {
             return pregunta.Name.toLowerCase().includes(
               this.state.filterString.toLocaleLowerCase()
             );
           })
-          .map(pregunta => {
+          .map((pregunta, index) => {
             return (
               <PreguntaEncuesta
                 key={pregunta.Id}
@@ -117,14 +195,22 @@ class EncuestaPreguntas extends React.Component {
                   );
                 }}
                 removerPregunta={() => {
-                  this.removerPreguntaEncuesta(pregunta.Id);
+                  this.removerPreguntaEncuesta(
+                    pregunta.Id,
+                    this.state.idEncuesta,
+                    index
+                  );
                 }}
               />
             );
           })}
         <div className="d-flex justify-content-center mt-3">
           <div className="col-sm-6 text-center mb-2">
-            <button type="submit" className="btn btn-success">
+            <button
+              type="submit"
+              className="btn btn-success"
+              onClick={this.enumerarPreguntasColeccion}
+            >
               Publicar preguntas
             </button>
           </div>
@@ -136,13 +222,6 @@ class EncuestaPreguntas extends React.Component {
   handleSubmit = e => {
     console.log(this.state);
     e.preventDefault();
-  };
-
-  handleDimension = e => {
-    this.setState({
-      dimension: e.target.value
-    });
-    console.log(this.state.dimension);
   };
 }
 
