@@ -1,6 +1,9 @@
 //Importar componentes React
 import React, { Component } from "react";
 
+//Importar React Router
+import { Route, Redirect } from "react-router";
+
 //Importar componente Axios
 import axios from "../../axios-orders";
 
@@ -153,6 +156,16 @@ class EncuestaPreguntas extends React.Component {
     );
   };
 
+  notifyRedirect = () => {
+    let text = "Guardando configuración, por favor espera";
+    let autoclose = 5000;
+    toast.info(text, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: autoclose
+    });
+  };
+  //this.Redirect();
+
   notifyDuplicate = (text, autoclose) => {
     toast.info(text, {
       position: toast.POSITION.BOTTOM_CENTER,
@@ -171,6 +184,12 @@ class EncuestaPreguntas extends React.Component {
     counter.preguntasEnBasedatos = preguntasEnBasedatos;
 
     return counter;
+  };
+
+  redirect = () => {
+    setTimeout(() => {
+      this.props.history.push("/encuesta");
+    }, 5000);
   };
 
   render() {
@@ -236,7 +255,10 @@ class EncuestaPreguntas extends React.Component {
     console.log(coleccionEncuesta);
     axios
       .post("/PreguntaEncuesta/CreateCollection", coleccionEncuesta)
-      .then(response => console.log("guardo bien"))
+      .then(response => {
+        this.notifyRedirect();
+        this.redirect();
+      })
       .catch(error => console.log(error));
   };
 }
