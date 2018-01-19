@@ -62,9 +62,7 @@ class EncuestaPreguntas extends React.Component {
       });
   }
 
-  componentDidUpdate() {
-    console.log("la coleccion se actualizo", this.state.encuestaColeccion);
-  }
+  componentDidUpdate() {}
 
   updatePreguntaColeccion = agregarPreguntanueva => {
     //Revisa el id de la pregunta para agregar a la coleccion
@@ -124,20 +122,22 @@ class EncuestaPreguntas extends React.Component {
         encuestaPregunta => encuestaPregunta.Pregunta.Id !== idPregunta
       );
       this.setState({ encuestaColeccion: nuevaEncuestaColeccion });
+
+      //Traer contador
+
       //Mensaje alerta en pantalla
-      this.notifyError();
+      this.notifyEliminar();
     }
   };
 
   notifySucces = () => {
-    toast.success("Pregunta agregada", {
+    toast.success("Pregunta agregada.", {
       position: toast.POSITION.BOTTOM_CENTER
     });
   };
 
-  notifyError = () => {
-    let a = 1;
-    toast.error(`Pregunta eliminada: ${a}`, {
+  notifyEliminar = (preguntasEnColeccion, preguntasEnBasedatos) => {
+    toast.error(`Pregunta eliminada.`, {
       position: toast.POSITION.BOTTOM_CENTER
     });
   };
@@ -151,15 +151,15 @@ class EncuestaPreguntas extends React.Component {
 
   enumerarPreguntasColeccion = () => {
     //Metodo para determinar el length de las coleccion de preguntas y del total de preguntas
+
+    let counter = {};
     let preguntasEnColeccion = [...this.state.encuestaColeccion].length;
     let preguntasEnBasedatos = [...this.state.preguntas].length;
 
-    console.log(
-      "las preguntas en coleccion son: " +
-        preguntasEnColeccion +
-        " preguntas en bd : " +
-        preguntasEnBasedatos
-    );
+    counter.preguntasEnColeccion = preguntasEnColeccion;
+    counter.preguntasEnBasedatos = preguntasEnBasedatos;
+
+    return counter;
   };
 
   render() {
@@ -206,11 +206,7 @@ class EncuestaPreguntas extends React.Component {
           })}
         <div className="d-flex justify-content-center mt-3">
           <div className="col-sm-6 text-center mb-2">
-            <button
-              type="submit"
-              className="btn btn-success"
-              onClick={this.enumerarPreguntasColeccion}
-            >
+            <button type="submit" className="btn btn-success">
               Publicar preguntas
             </button>
           </div>
