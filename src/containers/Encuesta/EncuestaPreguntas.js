@@ -124,6 +124,10 @@ class EncuestaPreguntas extends React.Component {
       this.setState({ encuestaColeccion: nuevaEncuestaColeccion });
 
       //Traer contador
+      let contador;
+      contador = this.enumerarPreguntasColeccion();
+
+      console.log(contador);
 
       //Mensaje alerta en pantalla
       this.notifyEliminar();
