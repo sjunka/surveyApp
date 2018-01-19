@@ -164,7 +164,6 @@ class EncuestaPreguntas extends React.Component {
       autoClose: autoclose
     });
   };
-  //this.Redirect();
 
   notifyDuplicate = (text, autoclose) => {
     toast.info(text, {
@@ -187,6 +186,7 @@ class EncuestaPreguntas extends React.Component {
   };
 
   redirect = () => {
+    //Metodo para redirigir al usuario al guardar preguntas
     setTimeout(() => {
       this.props.history.push("/encuesta");
     }, 5000);
@@ -195,6 +195,17 @@ class EncuestaPreguntas extends React.Component {
   render() {
     return (
       <div className="container">
+        <div className="row mb-2">
+          <div className="col align-self-start">
+            <button
+              type="button"
+              className="btn btn-outline-info btn-sm"
+              onClick={this.goBackHandler}
+            >
+              Volver
+            </button>
+          </div>
+        </div>
         <ToastContainer autoClose={3000} />
         <h4 className="col-form-label">Asignar Preguntas</h4>
         <Filter
@@ -260,6 +271,10 @@ class EncuestaPreguntas extends React.Component {
         this.redirect();
       })
       .catch(error => console.log(error));
+  };
+
+  goBackHandler = () => {
+    this.props.history.goBack();
   };
 }
 

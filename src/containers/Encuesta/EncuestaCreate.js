@@ -18,6 +18,17 @@ class Encuesta extends React.Component {
   render() {
     return (
       <div className="container">
+        <div className="row mb-2">
+          <div className="col align-self-start">
+            <button
+              type="button"
+              className="btn btn-outline-info btn-sm"
+              onClick={this.goBackHandler}
+            >
+              Volver
+            </button>
+          </div>
+        </div>
         <h4 className="col-form-label">Encuesta</h4>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -130,6 +141,10 @@ class Encuesta extends React.Component {
     this.setState({
       fechaFin: e.target.value
     });
+  };
+
+  goBackHandler = () => {
+    this.props.history.goBack();
   };
 }
 
