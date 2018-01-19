@@ -48,8 +48,6 @@ class EncuestaPreguntas extends React.Component {
           });
         }
 
-        console.log("las preguntas de la bd son :", preguntasUpdated);
-
         const recibirIdEncuesta = this.props.match.params.idEncuesta;
 
         this.setState({
@@ -77,9 +75,13 @@ class EncuestaPreguntas extends React.Component {
     if (preguntaIndex === -1) {
       // Indica que la pregunta no esta en el arreglo
       encuestaColeccionActualizada.push(agregarPreguntanueva);
-      this.setState({ encuestaColeccion: encuestaColeccionActualizada });
+      this.setState({ encuestaColeccion: encuestaColeccionActualizada }, () => {
+        let contador;
+        contador = this.enumerarPreguntasColeccion();
+        this.notifySucces(contador);
+      });
+
       //Mensaje alerta en pantalla
-      this.notifySucces();
     } else {
       //Mensaje alerta en pantalla
       let text = "Esta pregunta ya se encuentra la lista";
@@ -121,29 +123,34 @@ class EncuestaPreguntas extends React.Component {
       let nuevaEncuestaColeccion = preguntaParaEliminarId.filter(
         encuestaPregunta => encuestaPregunta.Pregunta.Id !== idPregunta
       );
-      this.setState({ encuestaColeccion: nuevaEncuestaColeccion });
-
-      //Traer contador
-      let contador;
-      contador = this.enumerarPreguntasColeccion();
-
-      console.log(contador);
-
-      //Mensaje alerta en pantalla
-      this.notifyEliminar();
+      this.setState({ encuestaColeccion: nuevaEncuestaColeccion }, () => {
+        let contador;
+        contador = this.enumerarPreguntasColeccion();
+        this.notifyEliminar(contador);
+      });
     }
   };
 
-  notifySucces = () => {
-    toast.success("Pregunta agregada.", {
-      position: toast.POSITION.BOTTOM_CENTER
-    });
+  notifySucces = contador => {
+    toast.success(
+      `Pregunta agregada  ${contador.preguntasEnColeccion} : ${
+        contador.preguntasEnBasedatos
+      }`,
+      {
+        position: toast.POSITION.BOTTOM_CENTER
+      }
+    );
   };
 
-  notifyEliminar = (preguntasEnColeccion, preguntasEnBasedatos) => {
-    toast.error(`Pregunta eliminada.`, {
-      position: toast.POSITION.BOTTOM_CENTER
-    });
+  notifyEliminar = contador => {
+    toast.error(
+      `Pregunta eliminada. ${contador.preguntasEnColeccion} : ${
+        contador.preguntasEnBasedatos
+      }`,
+      {
+        position: toast.POSITION.BOTTOM_CENTER
+      }
+    );
   };
 
   notifyDuplicate = (text, autoclose) => {
@@ -210,7 +217,13 @@ class EncuestaPreguntas extends React.Component {
           })}
         <div className="d-flex justify-content-center mt-3">
           <div className="col-sm-6 text-center mb-2">
-            <button type="submit" className="btn btn-success">
+            <button
+              type="submit"
+              onClick={() =>
+                this.guardarColeccionEncuesta(this.state.encuestaColeccion)
+              }
+              className="btn btn-success"
+            >
               Publicar preguntas
             </button>
           </div>
@@ -219,9 +232,12 @@ class EncuestaPreguntas extends React.Component {
     );
   }
 
-  handleSubmit = e => {
-    console.log(this.state);
-    e.preventDefault();
+  guardarColeccionEncuesta = coleccionEncuesta => {
+    console.log(coleccionEncuesta);
+    axios
+      .post("/PreguntaEncuesta/CreateCollection", coleccionEncuesta)
+      .then(response => console.log("guardo bien"))
+      .catch(error => console.log(error));
   };
 }
 
