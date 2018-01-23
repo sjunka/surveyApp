@@ -42,6 +42,7 @@ import UsuarioCreate from "./containers/Usuario/UsuarioCreate";
 import Encuesta from "./containers/Encuesta/Encuesta";
 import EncuestaCreate from "./containers/Encuesta/EncuestaCreate";
 import EncuestaPreguntas from "./containers/Encuesta/EncuestaPreguntas";
+import EncuestaEdit from "./containers/Encuesta/EncuestaEdit";
 
 import Resultado from "./containers/Resultado/Resultado";
 
@@ -92,6 +93,12 @@ class App extends Component {
               exact
               path="/encuesta/asignarpreguntas/:idEncuesta"
               component={EncuestaPreguntas}
+            />
+
+            <Route
+              exact
+              path="/encuesta/edit/:idEncuesta"
+              component={EncuestaEdit}
             />
 
             <Route exact path="/resultado" component={Resultado} />
