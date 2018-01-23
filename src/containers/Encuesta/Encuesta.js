@@ -1,9 +1,6 @@
 //Importar componentes React
 import React, { Component } from "react";
 
-//Importar componentes React
-import Link from "react-router-dom";
-
 //Importar componente Axios
 import axios from "../../axios-orders";
 
@@ -42,7 +39,7 @@ class Encuesta extends Component {
       });
   }
   showControls = () => {
-    if (this.state.showControls == true) {
+    if (this.state.showControls === true) {
       this.setState({ showControls: false });
     } else {
       this.setState({ showControls: true });
