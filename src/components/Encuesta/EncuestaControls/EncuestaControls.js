@@ -1,17 +1,41 @@
 import React, { Component } from "react";
 
+//Importar componente toast
+import { ToastContainer, toast } from "react-toastify";
+
 class EncuestaControls extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      idGrupoInteres: ""
+      idGrupoInteres: "",
+      linkEncuesta: this.props.linkEncuesta
     };
   }
+
+  copiarLinkEncuestaClipboard = () => {
+    var copyText = document.getElementById("linkEncuesta");
+    copyText.select();
+    document.execCommand("Copy");
+    this.mensajePantalla();
+  };
+
+  mensajePantalla = () => {
+    let text = "Encuesta copiada ";
+    let autoclose = 3000;
+    toast.info(text, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: autoclose
+    });
+  };
 
   handleChange = event => {
     this.setState({ idGrupoInteres: event.target.value }, () => {
       console.log("salio de handle", this.state.idGrupoInteres);
     });
+  };
+
+  handleLinkEncuestaChange = e => {
+    this.setState({ linkEncuesta: e.target.value });
   };
 
   render() {
@@ -67,11 +91,20 @@ class EncuestaControls extends Component {
               <div className="row">
                 <div className="col-sm-10 col-md-8">
                   {this.props.linkEncuesta ? (
-                    <h6>{this.props.linkEncuesta}</h6>
+                    <input
+                      id={"linkEncuesta"}
+                      className="form-control mb-2"
+                      type="text"
+                      value={this.props.linkEncuesta}
+                      onChange={this.handleLinkEncuestaChange}
+                    />
                   ) : null}
                 </div>
                 <div className="col-sm-2 col-md-4 mb-2">
-                  <button className={"btn btn-info btn-sm"}>
+                  <button
+                    onClick={this.copiarLinkEncuestaClipboard}
+                    className={"btn btn-info btn-sm"}
+                  >
                     <i className="fa fa-share" aria-hidden="true" />
                     <span className="pl-1">Copiar link</span>
                   </button>
@@ -107,6 +140,7 @@ class EncuestaControls extends Component {
 
           <div className="row mt-2" />
         </div>
+        <ToastContainer autoClose={3000} />
       </div>
     );
   }

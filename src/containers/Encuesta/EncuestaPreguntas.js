@@ -157,7 +157,7 @@ class EncuestaPreguntas extends React.Component {
   };
 
   notifyRedirect = () => {
-    let text = "Guardando configuración, por favor espera";
+    let text = "Guardando, por favor espera";
     let autoclose = 5000;
     toast.info(text, {
       position: toast.POSITION.BOTTOM_CENTER,
