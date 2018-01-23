@@ -14,7 +14,8 @@ class Encuesta extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      encuestas: []
+      encuestas: [],
+      showControls: false
     };
   }
 
@@ -40,7 +41,13 @@ class Encuesta extends Component {
         console.log(error);
       });
   }
-
+  showControls = () => {
+    if (this.state.showControls == true) {
+      this.setState({ showControls: false });
+    } else {
+      this.setState({ showControls: true });
+    }
+  };
   render() {
     let encuestas = this.state.encuestas.map(encuesta => {
       return (
@@ -52,6 +59,8 @@ class Encuesta extends Component {
           enddate={encuesta.FechaFin}
           asignarPreguntas={() => this.encuestaSelectedHandler(encuesta.Id)}
           delete={() => this.encuestaDeletedHandler(encuesta.Id)}
+          showControls={this.showControls}
+          show={this.state.showControls}
         />
       );
     });
