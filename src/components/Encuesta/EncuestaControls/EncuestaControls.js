@@ -114,33 +114,37 @@ class EncuestaControls extends Component {
           </div>
         </div>
 
-        <div className="d-flex justify-content-center">
-          <div className="col-sm-4 col-md-4 text-right">
-            <button
-              type="submit"
-              className="btn btn-success btn-sm"
-              onClick={this.props.asignarPreguntas}
-            >
-              Asignar Preguntas
-            </button>
-          </div>
-          <div className="col-sm-4 col-md-4 text-right">
-            <button
-              type="submit"
-              className="btn btn-warning btn-sm"
-              //onClick={this.props.asignarPreguntas}
-            >
-              Editar Preguntas
-            </button>
-          </div>
-          <div className="col-sm-4 col-md-4 text-left">
-            <button
-              type="submit"
-              className="btn btn-danger btn-sm"
-              onClick={this.props.asignarPreguntas}
-            >
-              Eliminar
-            </button>
+        <div className="container">
+          <div className="row">
+            <div className="d-flex justify-content-center">
+              <div className="col-sm-4 col-md-4 text-right">
+                <button
+                  type="submit"
+                  className="btn btn-success btn-sm"
+                  onClick={this.props.asignarPreguntas}
+                >
+                  Asignar Preguntas
+                </button>
+              </div>
+              <div className="col-sm-4 col-md-4 text-right">
+                <button
+                  type="submit"
+                  className="btn btn-warning btn-sm"
+                  //onClick={this.props.asignarPreguntas}
+                >
+                  Editar Preguntas
+                </button>
+              </div>
+              <div className="col-sm-4 col-md-4 text-left">
+                <button
+                  type="submit"
+                  className="btn btn-danger btn-sm"
+                  onClick={this.props.asignarPreguntas}
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
