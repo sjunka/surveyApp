@@ -1,3 +1,5 @@
+//Listado de encuestas
+
 //Importar componentes React
 import React, { Component } from "react";
 
@@ -11,8 +13,7 @@ class Encuesta extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      encuestas: [],
-      showControls: false
+      encuestas: []
     };
   }
 
@@ -38,13 +39,7 @@ class Encuesta extends Component {
         console.log(error);
       });
   }
-  showControls = () => {
-    if (this.state.showControls === true) {
-      this.setState({ showControls: false });
-    } else {
-      this.setState({ showControls: true });
-    }
-  };
+
   render() {
     let encuestas = this.state.encuestas.map(encuesta => {
       return (
@@ -55,9 +50,6 @@ class Encuesta extends Component {
           inicialdate={encuesta.FechaInicio}
           enddate={encuesta.FechaFin}
           asignarPreguntas={() => this.encuestaSelectedHandler(encuesta.Id)}
-          delete={() => this.encuestaDeletedHandler(encuesta.Id)}
-          showControls={this.showControls}
-          show={this.state.showControls}
         />
       );
     });
@@ -116,7 +108,7 @@ class Encuesta extends Component {
 
   encuestaSelectedHandler = id => {
     console.log(id);
-    this.props.history.push("/encuesta/asignarpreguntas/" + id);
+    this.props.history.push("/encuesta/edit/" + id);
   };
 
   goCreateHandler = () => {

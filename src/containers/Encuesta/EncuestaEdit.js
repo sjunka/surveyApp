@@ -100,6 +100,10 @@ class EncuestaEdit extends Component {
     this.setState({ linkEncuesta });
   };
 
+  asignarPreguntas = () => {
+    let idEncuestaAsignar = 14;
+    this.props.history.push("/encuesta/asignarpreguntas/" + idEncuestaAsignar);
+  };
   render() {
     let preguntasDeEncuesta = this.state.preguntas.map(pregunta => {
       return <PreguntaCard key={pregunta.Id} name={pregunta.Name} />;
@@ -122,6 +126,7 @@ class EncuestaEdit extends Component {
                 gruposInteres={this.state.gruposInteres}
                 grupoInteresSingular={this.grupoInteresId}
                 linkEncuesta={this.state.linkEncuesta}
+                asignarPreguntas={this.asignarPreguntas}
               />
             }
           </div>
