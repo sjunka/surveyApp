@@ -10,7 +10,7 @@ import EncuestaControls from "../../components/Encuesta/EncuestaControls/Encuest
 class EncuestaEdit extends Component {
   state = {
     preguntas: [],
-    encuestaId: 14,
+    encuestaId: "",
     encuestaName: "",
     encuestaDescripcion: "",
     gruposInteres: [],
@@ -18,8 +18,10 @@ class EncuestaEdit extends Component {
   };
 
   componentDidMount() {
+    const recibirIdEncuesta = this.props.match.params.idEncuesta;
+    console.log(recibirIdEncuesta);
     axios
-      .get("/pregunta/GetByEncuesta/" + this.state.encuestaId)
+      .get("/pregunta/GetByEncuesta/" + recibirIdEncuesta)
       .then(response => {
         console.log("la respuesta del server es:", response);
 
@@ -31,7 +33,9 @@ class EncuestaEdit extends Component {
             id: key
           });
         }
-        this.setState({ preguntas: preguntasUpdated });
+        this.setState({
+          preguntas: preguntasUpdated
+        });
 
         console.log(this.state.preguntas);
       })
@@ -40,7 +44,7 @@ class EncuestaEdit extends Component {
       });
 
     axios
-      .get("/Encuesta/" + this.state.encuestaId)
+      .get("/Encuesta/" + recibirIdEncuesta)
       .then(response => {
         const encuestaName = {
           name: response.data.Name,
@@ -131,6 +135,8 @@ class EncuestaEdit extends Component {
             }
           </div>
           <div className="col-sm-12 col-md-12">
+            <p>Preguntas de esta Encuesta:</p>
+
             {this.state.preguntas.length > 0 ? (
               preguntasDeEncuesta
             ) : (
