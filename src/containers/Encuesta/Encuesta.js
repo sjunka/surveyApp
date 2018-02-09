@@ -115,9 +115,7 @@ class Encuesta extends Component {
     this.props.history.push("/encuesta/new");
   };
 
-  goBackHandler = () => {
-    this.props.history.goBack();
-  };
+  goBackHandler = () => {};
 }
 
 export default Encuesta;

@@ -77,7 +77,7 @@ class EncuestaControls extends Component {
                       this.props.grupoInteresSingular(this.state.idGrupoInteres)
                     }
                   >
-                    Compartir
+                    Generar
                   </button>
                 </div>
               </div>
@@ -136,7 +136,7 @@ class EncuestaControls extends Component {
               <button
                 type="submit"
                 className="btn btn-danger btn-sm"
-                onClick={this.props.asignarPreguntas}
+                onClick={this.props.eliminarEncuesta}
               >
                 Eliminar
               </button>

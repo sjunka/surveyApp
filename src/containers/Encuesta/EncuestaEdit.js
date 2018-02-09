@@ -10,7 +10,7 @@ import EncuestaControls from "../../components/Encuesta/EncuestaControls/Encuest
 class EncuestaEdit extends Component {
   state = {
     preguntas: [],
-    encuestaId: "",
+    encuestaId: this.props.match.params.idEncuesta,
     encuestaName: "",
     encuestaDescripcion: "",
     gruposInteres: [],
@@ -19,11 +19,10 @@ class EncuestaEdit extends Component {
 
   componentDidMount() {
     const recibirIdEncuesta = this.props.match.params.idEncuesta;
-    console.log(recibirIdEncuesta);
     axios
       .get("/pregunta/GetByEncuesta/" + recibirIdEncuesta)
       .then(response => {
-        console.log("la respuesta del server es:", response);
+        console.log("preguntas de encuesta:", response);
 
         const preguntasUpdated = [];
 
@@ -37,7 +36,7 @@ class EncuestaEdit extends Component {
           preguntas: preguntasUpdated
         });
 
-        console.log(this.state.preguntas);
+        console.log("listado de preguntas de encuesta", this.state.preguntas);
       })
       .catch(error => {
         console.log(error);
@@ -98,8 +97,8 @@ class EncuestaEdit extends Component {
     this.compartirEncuesta(idEncuesta, idGrupoInteres);
   };
 
-  compartirEncuesta = (idEncuesta, idGrupoInteres) => {
-    let linkEncuesta = `http://190.85.67.146:3000/encuesta/survey/${idEncuesta}/${idGrupoInteres}`;
+  compartirEncuesta = (recibirIdEncuesta, idGrupoInteres) => {
+    let linkEncuesta = `http://190.85.67.146:3000/encuesta/survey/${recibirIdEncuesta}/${idGrupoInteres}`;
     console.log(linkEncuesta);
     this.setState({ linkEncuesta });
   };
@@ -108,13 +107,28 @@ class EncuestaEdit extends Component {
     let idEncuestaAsignar = 14;
     this.props.history.push("/encuesta/asignarpreguntas/" + idEncuestaAsignar);
   };
+
+  eliminarEncuesta = idEncuesta => {
+    axios
+      .delete("/Encuesta/" + idEncuesta)
+      .then(response => {
+        console.log("se borro la encuesta de la base de datos", idEncuesta);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  goBackHandler = () => {
+    this.props.history.goBack();
+  };
   render() {
     let preguntasDeEncuesta = this.state.preguntas.map(pregunta => {
       return <PreguntaCard key={pregunta.Id} name={pregunta.Name} />;
     });
     return (
       <div className="container">
-        <GoBackButton goBack={this.goBackHandler} />
+        <GoBackButton goBackHandler={this.goBackHandler} />
         <div className="row">
           {this.state.encuestaName ? (
             <div className="col-sm-12">
@@ -131,6 +145,9 @@ class EncuestaEdit extends Component {
                 grupoInteresSingular={this.grupoInteresId}
                 linkEncuesta={this.state.linkEncuesta}
                 asignarPreguntas={this.asignarPreguntas}
+                eliminarEncuesta={() =>
+                  this.eliminarEncuesta(this.state.encuestaId)
+                }
               />
             }
           </div>

@@ -268,7 +268,7 @@ class EncuestaPreguntas extends React.Component {
       .post("/PreguntaEncuesta/CreateCollection", coleccionEncuesta)
       .then(response => {
         this.notifyRedirect();
-        this.redirect();
+        // this.redirect();
       })
       .catch(error => console.log(error));
   };
